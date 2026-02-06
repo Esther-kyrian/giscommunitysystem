@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annonces - Gis Community System</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            overflow-x: hidden;
+            background: #f0f9ff;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #0ea5e9;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-image {
+            max-height: 50px;
+            width: auto;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: #0c4a6e;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav ul li a:hover {
+            background: rgba(14, 165, 233, 0.1);
+            color: #0ea5e9;
+        }
+
+        .nav-icon {
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-cta:hover {
+            background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            color: white;
+            margin-bottom: 3rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.6;
+        }
+
+        /* Carousel */
+        .carousel-container {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .carousel-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #0ea5e9;
+            margin-bottom: 2rem;
+        }
+
+        .carousel {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(14, 165, 233, 0.2);
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .carousel-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 2rem;
+        }
+
+        .carousel-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .carousel-content p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .carousel-btn {
+            background: #0ea5e9;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-btn:hover {
+            background: #0284c7;
+            transform: translateY(-2px);
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 1rem;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        .carousel-nav button {
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: #0c4a6e;
+            transition: all 0.3s ease;
+            pointer-events: all;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-nav button:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        .carousel-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 1rem;
+        }
+
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #cbd5e1;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-dot.active {
+            background: #0ea5e9;
+            transform: scale(1.2);
+        }
+
+        /* Info Section */
+        .info-section {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+
+        .info-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(14, 165, 233, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(14, 165, 233, 0.2);
+        }
+
+        .info-icon {
+            font-size: 2.5rem;
+            color: #0ea5e9;
+            margin-bottom: 1.5rem;
+            width: 70px;
+            height: 70px;
+            background: #e0f2fe;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .info-card h3 {
+            color: #0c4a6e;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .info-card p {
+            color: #64748b;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .info-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #0ea5e9;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        /* Announcements Grid */
+        .announcements {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .announcements h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #0ea5e9;
+            margin-bottom: 3rem;
+        }
+
+        .announcements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .announcement-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .announcement-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.2);
+        }
+
+        .announcement-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+
+        .announcement-content {
+            padding: 1.5rem;
+        }
+
+        .announcement-category {
+            display: inline-block;
+            background: #e0f2fe;
+            color: #0ea5e9;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .announcement-content h3 {
+            color: #0c4a6e;
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .announcement-content p {
+            color: #64748b;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .announcement-date {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .announcement-btn {
+            display: inline-block;
+            background: #0ea5e9;
+            color: white;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .announcement-btn:hover {
+            background: #0284c7;
+            transform: translateY(-2px);
+        }
+
+        /* Search Section */
+        .search-section {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .search-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.1);
+        }
+
+        .search-container h2 {
+            color: #0ea5e9;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #0ea5e9;
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+        }
+
+        .search-btn {
+            background: #0ea5e9;
+            color: white;
+            border: none;
+            padding: 0 2rem;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background: #0284c7;
+        }
+
+        .search-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .filter-btn {
+            background: #f1f5f9;
+            border: 2px solid #e2e8f0;
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: #0ea5e9;
+            color: white;
+            border-color: #0ea5e9;
+        }
+
+        .filter-btn:hover:not(.active) {
+            background: #e2e8f0;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #0c4a6e 0%, #1e40af 100%);
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #38bdf8;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p {
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-section ul li a:hover {
+            color: #38bdf8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: #38bdf8;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+
+        .newsletter {
+            margin-top: 1.5rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .newsletter-form input::placeholder {
+            color: #94a3b8;
+        }
+
+        .newsletter-form button {
+            background: #38bdf8;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: #0ea5e9;
+        }
+
+        .footer-contact-icon {
+            margin-right: 10px;
+            width: 16px;
+            text-align: center;
+        }
+
+        /* Chatbot Styles */
+        .chatbot-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .chatbot-toggle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .chatbot-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .chatbot-notification {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            background: #ff4757;
+            border-radius: 50%;
+            color: white;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+        }
+
+        .chatbot-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chatbot-window.active {
+            display: flex;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            padding: 15px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .chatbot-header-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .chatbot-header-info h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .chatbot-header-info p {
+            margin: 5px 0 0;
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .chatbot-close {
+            margin-left: auto;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .chatbot-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .chatbot-message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+
+        .chatbot-message.bot {
+            background: #f0f9ff;
+            color: #0c4a6e;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .chatbot-message.user {
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .chatbot-message.whatsapp-redirect {
+            background: #25D366;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .chatbot-message.whatsapp-redirect:hover {
+            background: #128C7E;
+        }
+
+        .chatbot-input-container {
+            padding: 15px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            gap: 10px;
+            background: #f8fafc;
+        }
+
+        .chatbot-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 25px;
+            outline: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .chatbot-input:focus {
+            border-color: #0ea5e9;
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+        }
+
+        .chatbot-send {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chatbot-send:hover {
+            background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+            transform: scale(1.05);
+        }
+
+        .chatbot-typing {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 16px;
+            background: #f0f9ff;
+            border-radius: 18px;
+            align-self: flex-start;
+            width: 70px;
+        }
+
+        .chatbot-typing span {
+            width: 8px;
+            height: 8px;
+            background: #0ea5e9;
+            border-radius: 50%;
+            animation: typingAnimation 1.4s infinite ease-in-out;
+        }
+
+        .chatbot-typing span:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+
+        .chatbot-typing span:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+
+        @keyframes typingAnimation {
+            0%, 80%, 100% {
+                transform: scale(0);
+            }
+            40% {
+                transform: scale(1);
+            }
+        }
+
+        .chatbot-quick-questions {
+            padding: 15px 15px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            border-bottom: 1px solid #e2e8f0;
+            background: white;
+        }
+
+        .chatbot-quick-question {
+            background: #f1f5f9;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-quick-question:hover {
+            background: #e2e8f0;
+            color: #0c4a6e;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .carousel-content h3 {
+                font-size: 1.5rem;
+            }
+
+            .carousel-content p {
+                font-size: 1rem;
+            }
+
+            .announcements-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .search-form {
+                flex-direction: column;
+            }
+
+            .search-btn {
+                padding: 1rem;
+            }
+
+            .carousel-nav button {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .logo-image {
+                max-height: 40px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .chatbot-container {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .chatbot-window {
+                width: 320px;
+                height: 450px;
+                right: -10px;
+            }
+            
+            .chatbot-toggle {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .chatbot-avatar {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .carousel-slide img {
+                height: 400px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .carousel-content {
+                padding: 1rem;
+            }
+
+            .carousel-content h3 {
+                font-size: 1.3rem;
+            }
+
+            .announcement-card {
+                margin: 0 1rem;
+            }
+
+            .chatbot-window {
+                width: 280px;
+                right: -30px;
+            }
+            
+            .chatbot-toggle {
+                width: 55px;
+                height: 55px;
+            }
+            
+            .chatbot-avatar {
+                width: 55px;
+                height: 55px;
+            }
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #0c4a6e;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                display: none;
+                z-index: 1000;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <img src="Gis Community System.png" alt="GIS Community System" class="logo-image">
+            </a>
+            
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul id="navMenu">
+                <li><a href="index.html"><i class="fas fa-home nav-icon"></i>Accueil</a></li>
+                <li><a href="annonce.html" class="nav-cta"><i class="fas fa-bullhorn nav-icon"></i>Annonce</a></li>
+                <li><a href="service.html"><i class="fas fa-cogs nav-icon"></i>Service</a></li>
+                <li><a href="apropos.html"><i class="fas fa-info-circle nav-icon"></i>À propos</a></li>
+                <li><a href="#contact"><i class="fas fa-phone-alt nav-icon"></i>Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Annonces & Actualités</h1>
+        <p>Découvrez les dernières nouvelles, offres spéciales et annonces importantes de Gis Community System. Restez informé sur nos projets, promotions et événements à venir.</p>
+    </section>
+
+    <!-- Carousel -->
+    <section class="carousel-container">
+        <h2 class="carousel-title">Dernières Annonces en Vedette</h2>
+        <div class="carousel">
+            <div class="carousel-track">
+                <!-- Slide 1 -->
+                <div class="carousel-slide" data-slide="0">
+                    <img src="img1.jpg" alt="Promotion Spéciale">
+                    <div class="carousel-content">
+                        <h3>Promotion Spéciale de Printemps</h3>
+                        <p>Profitez de 30% de réduction sur tous nos services de développement web jusqu'au 30 juin. Lancez votre projet digital maintenant !</p>
+                        <button class="carousel-btn" onclick="openWhatsApp()">En savoir plus</button>
+                    </div>
+                </div>
+                <!-- Slide 2 -->
+                <div class="carousel-slide" data-slide="1">
+                    <img src="img2.jpg" alt="Nouveau Service">
+                    <div class="carousel-content">
+                        <h3>Lancement de Notre Service E-commerce</h3>
+                        <p>Découvrez notre nouveau service de création de boutiques en ligne avec paiement sécurisé et gestion complète.</p>
+                        <button class="carousel-btn" onclick="openWhatsApp()">Découvrir</button>
+                    </div>
+                </div>
+                <!-- Slide 3 -->
+                <div class="carousel-slide" data-slide="2">
+                    <img src="img3.jpg" alt="Événement">
+                    <div class="carousel-content">
+                        <h3>Webinaire Gratuit : Transformation Digitale</h3>
+                        <p>Rejoignez notre webinaire le 15 avril pour découvrir comment digitaliser votre entreprise efficacement.</p>
+                        <button class="carousel-btn" onclick="openWhatsApp()">S'inscrire</button>
+                    </div>
+                </div>
+                <!-- Slide 4 -->
+                <div class="carousel-slide" data-slide="3">
+                    <img src="img4.jpg" alt="Partenariat">
+                    <div class="carousel-content">
+                        <h3>Nouveau Partenariat avec Google</h3>
+                        <p>Nous sommes fiers d'annoncer notre nouveau partenariat stratégique avec Google Cloud pour des solutions encore plus performantes.</p>
+                        <button class="carousel-btn" onclick="openWhatsApp()">Détails</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="carousel-nav">
+                <button class="carousel-prev" onclick="prevSlide()">❮</button>
+                <button class="carousel-next" onclick="nextSlide()">❯</button>
+            </div>
+            
+            <div class="carousel-dots">
+                <button class="carousel-dot active" onclick="goToSlide(0)"></button>
+                <button class="carousel-dot" onclick="goToSlide(1)"></button>
+                <button class="carousel-dot" onclick="goToSlide(2)"></button>
+                <button class="carousel-dot" onclick="goToSlide(3)"></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Info Section (Remplacement de la section Categories) -->
+    <section class="info-section">
+        <h2 style="text-align: center; font-size: 2.5rem; color: #0ea5e9; margin-bottom: 3rem;">
+            Pourquoi Suivre Nos Annonces ?
+        </h2>
+        <div class="info-grid">
+            <div class="info-card">
+                <div class="info-icon">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <h3>Informations en Temps Réel</h3>
+                <p>Restez à jour avec les dernières nouvelles de Gis Community System. Nos annonces vous informent en temps réel sur les promotions, nouveaux services et événements importants.</p>
+                <div class="info-stats">
+                    <div class="stat">
+                        <span class="stat-number">50+</span>
+                        <span class="stat-label">Annonces mensuelles</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">24h</span>
+                        <span class="stat-label">Mise à jour</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <div class="info-icon">
+                    <i class="fas fa-tags"></i>
+                </div>
+                <h3>Opportunités Exclusives</h3>
+                <p>Bénéficiez d'offres spéciales et de promotions réservées à nos followers. Les annonces sont votre porte d'entrée vers des réductions et avantages uniques.</p>
+                <div class="info-stats">
+                    <div class="stat">
+                        <span class="stat-number">30%</span>
+                        <span class="stat-label">Économie moyenne</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">100+</span>
+                        <span class="stat-label">Promotions/an</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <div class="info-icon">
+                    <i class="fas fa-calendar-check"></i>
+                </div>
+                <h3>Événements & Formations</h3>
+                <p>Ne manquez aucun webinaire, atelier ou événement important. Nos annonces vous tiennent informés des opportunités d'apprentissage et de networking.</p>
+                <div class="info-stats">
+                    <div class="stat">
+                        <span class="stat-number">12</span>
+                        <span class="stat-label">Événements/an</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-number">500+</span>
+                        <span class="stat-label">Participants</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="search-container">
+            <h2>Rechercher une Annonce</h2>
+            <form class="search-form" onsubmit="searchAnnouncements(event)">
+                <input type="text" class="search-input" placeholder="Rechercher par mot-clé..." id="searchInput">
+                <button type="submit" class="search-btn">
+                    <i class="fas fa-search"></i> Rechercher
+                </button>
+            </form>
+            <div class="search-filters">
+                <button class="filter-btn active" onclick="filterAll()">Tous</button>
+                <button class="filter-btn" onclick="filterAnnouncements('promotions')">Promotions</button>
+                <button class="filter-btn" onclick="filterAnnouncements('nouveautes')">Nouveautés</button>
+                <button class="filter-btn" onclick="filterAnnouncements('evenements')">Événements</button>
+                <button class="filter-btn" onclick="filterAnnouncements('travaux')">Travaux</button>
+                <button class="filter-btn" onclick="filterAnnouncements('importantes')">Importantes</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Announcements Grid -->
+
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Gis Community System</h3>
+                <p>Votre partenaire de confiance pour tous vos besoins en services numériques.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/+242068702524" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Liens Rapides</h3>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home footer-contact-icon"></i>Accueil</a></li>
+                    <li><a href="annonce.html"><i class="fas fa-bullhorn footer-contact-icon"></i>Annonce</a></li>
+                    <li><a href="service.html"><i class="fas fa-cogs footer-contact-icon"></i>Service</a></li>
+                    <li><a href="apropos.html"><i class="fas fa-info-circle footer-contact-icon"></i>À propos</a></li>
+                    <li><a href="#contact"><i class="fas fa-envelope footer-contact-icon"></i>Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Nos Services</h3>
+                <ul>
+                    <li><a href="service.html"><i class="fas fa-globe footer-contact-icon"></i>Sites Web</a></li>
+                    <li><a href="service.html"><i class="fas fa-mobile-alt footer-contact-icon"></i>Applications Mobile</a></li>
+                    <li><a href="service.html"><i class="fas fa-laptop-code footer-contact-icon"></i>Applications Web</a></li>
+                    <li><a href="service.html"><i class="fas fa-chart-line footer-contact-icon"></i>SEO & Marketing</a></li>
+                    <li><a href="service.html"><i class="fas fa-database footer-contact-icon"></i>Data & Analytics</a></li>
+                    <li><a href="service.html"><i class="fas fa-graduation-cap footer-contact-icon"></i>Formation & Consulting</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="mailto:talianelouboundzi@gmail.com"><i class="fas fa-envelope footer-contact-icon"></i>talianelouboundzi@gmail.com</a></li>
+                    <li><a href="tel:+237681634866"><i class="fas fa-phone footer-contact-icon"></i>+237 681634866</a></li>
+                    <li><a href="https://wa.me/+242068702524"><i class="fab fa-whatsapp footer-contact-icon"></i>+242 068702524 (WhatsApp)</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt footer-contact-icon"></i>Douala, Cameroun</a></li>
+                </ul>
+                <div class="newsletter">
+                    <p>Abonnez-vous à notre newsletter</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Votre email" required>
+                        <button type="submit">S'abonner</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 GIS Community System. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <button class="chatbot-toggle" onclick="toggleChatbot()">
+            <img src="sarah.jpg" alt="Sarah AI" class="chatbot-avatar">
+            <div class="chatbot-notification" id="chatNotification">1</div>
+        </button>
+        
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <img src="sarah.jpg" alt="Sarah AI" class="chatbot-header-avatar">
+                <div class="chatbot-header-info">
+                    <h3>Sarah AI</h3>
+                    <p>Assistant virtuel de GCS</p>
+                </div>
+                <button class="chatbot-close" onclick="toggleChatbot()">×</button>
+            </div>
+            
+            <div class="chatbot-quick-questions">
+                <button class="chatbot-quick-question" onclick="quickQuestion('annonces')">Annonces</button>
+                <button class="chatbot-quick-question" onclick="quickQuestion('promotions')">Promotions</button>
+                <button class="chatbot-quick-question" onclick="quickQuestion('evenements')">Événements</button>
+                <button class="chatbot-quick-question" onclick="quickQuestion('contact')">Contact</button>
+                <button class="chatbot-quick-question" onclick="quickQuestion('santé')">Comment ça va?</button>
+            </div>
+            
+            <div class="chatbot-messages" id="chatMessages">
+                <div class="chatbot-message bot">
+                    Bonjour ! Je suis Sarah, l'assistante virtuelle de Gis Community System.<br><br>
+                    Je peux vous aider à trouver des annonces, promotions et événements. Que recherchez-vous ?
+                </div>
+            </div>
+            
+            <div class="chatbot-input-container">
+                <input type="text" class="chatbot-input" id="chatInput" placeholder="Posez votre question..." onkeypress="handleChatInput(event)">
+                <button class="chatbot-send" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // WhatsApp function
+        function openWhatsApp() {
+            const phoneNumber = "+242068702524";
+            const message = "Bonjour, je viens de la page Annonces de GIS Community System et je souhaite avoir plus d'informations.";
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+        }
+
+        // Carousel functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const dots = document.querySelectorAll('.carousel-dot');
+        const track = document.querySelector('.carousel-track');
+        const totalSlides = slides.length;
+
+        function updateCarousel() {
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+        }
+
+        // Auto-advance carousel
+        let carouselInterval = setInterval(nextSlide, 5000);
+
+        function resetCarouselInterval() {
+            clearInterval(carouselInterval);
+            carouselInterval = setInterval(nextSlide, 5000);
+        }
+
+        // Announcements data
+        const announcements = [
+            {
+                id: 1,
+                title: "Promotion de Printemps : -30% sur les Sites Web",
+                description: "Profitez de notre offre spéciale printemps avec 30% de réduction sur tous les projets de sites vitrines. Offre valable jusqu'au 30 juin.",
+                category: "promotions",
+                date: "15 mars 2026",
+                important: true,
+                image: "promo-spring.jpg"
+            },
+            {
+                id: 2,
+                title: "Nouveau Service : Applications Flutter",
+                description: "Nous lançons notre nouveau service de développement d'applications cross-platform avec Flutter. Des applications natives pour iOS et Android avec un seul codebase.",
+                category: "nouveautes",
+                date: "10 mars 2026",
+                important: true,
+                image: "flutter-app.jpg"
+            },
+            {
+                id: 3,
+                title: "Webinaire Gratuit : SEO pour Débutants",
+                description: "Apprenez les bases du référencement naturel lors de notre webinaire gratuit le 25 mars. Inscrivez-vous dès maintenant !",
+                category: "evenements",
+                date: "5 mars 2026",
+                important: false,
+                image: "webinar-seo.jpg"
+            },
+            {
+                id: 4,
+                title: "Maintenance Planifiée du Serveur",
+                description: "Une maintenance est prévue le 20 mars de 2h à 6h. Nos services pourront être temporairement indisponibles.",
+                category: "travaux",
+                date: "1 mars 2026",
+                important: true,
+                image: "maintenance.jpg"
+            },
+            {
+                id: 5,
+                title: "Partenariat avec Digital Ocean",
+                description: "Nous sommes heureux d'annoncer notre nouveau partenariat avec Digital Ocean pour des solutions d'hébergement cloud performantes.",
+                category: "nouveautes",
+                date: "28 février 2026",
+                important: false,
+                image: "partnership.jpg"
+            },
+            {
+                id: 6,
+                title: "Offre Spéciale E-commerce",
+                description: "Lancez votre boutique en ligne avec notre pack e-commerce complet à 150.000 FCFA au lieu de 200.000 FCFA.",
+                category: "promotions",
+                date: "25 février 2026",
+                important: true,
+                image: "ecommerce-offer.jpg"
+            },
+            {
+                id: 7,
+                title: "Formation React.js Avancée",
+                description: "Notre nouvelle formation React.js avancée commence le 5 avril. Places limitées à 15 participants.",
+                category: "evenements",
+                date: "20 février 2026",
+                important: false,
+                image: "react-training.jpg"
+            },
+            {
+                id: 8,
+                title: "Amélioration des Serveurs",
+                description: "Nous avons amélioré nos infrastructures serveurs pour une meilleure performance et sécurité de vos données.",
+                category: "travaux",
+                date: "15 février 2026",
+                important: false,
+                image: "server-upgrade.jpg"
+            }
+        ];
+
+        // Display announcements
+        function displayAnnouncements(filter = 'all') {
+            const grid = document.getElementById('announcementsGrid');
+            grid.innerHTML = '';
+            
+            let filteredAnnouncements = announcements;
+            
+            if (filter !== 'all') {
+                filteredAnnouncements = announcements.filter(ann => ann.category === filter);
+            }
+            
+            filteredAnnouncements.forEach(announcement => {
+                const card = document.createElement('div');
+                card.className = 'announcement-card';
+                card.innerHTML = `
+                    <img src="${announcement.image}" alt="${announcement.title}" class="announcement-image" onerror="this.src='default-annonce.jpg'">
+                    <div class="announcement-content">
+                        <span class="announcement-category">${getCategoryName(announcement.category)}</span>
+                        ${announcement.important ? '<span style="color: #ff4757; font-size: 0.9rem; margin-left: 10px;"><i class="fas fa-exclamation-circle"></i> Important</span>' : ''}
+                        <h3>${announcement.title}</h3>
+                        <p>${announcement.description}</p>
+                        <div class="announcement-date">
+                            <i class="far fa-calendar"></i> ${announcement.date}
+                        </div>
+                        <a href="#" class="announcement-btn" onclick="showAnnouncementDetails(${announcement.id})">
+                            <i class="fas fa-eye"></i> Voir les détails
+                        </a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function getCategoryName(category) {
+            const categories = {
+                'promotions': 'Promotion',
+                'nouveautes': 'Nouveauté',
+                'evenements': 'Événement',
+                'travaux': 'Travaux',
+                'importantes': 'Important'
+            };
+            return categories[category] || category;
+        }
+
+        function filterAnnouncements(category) {
+            displayAnnouncements(category);
+            updateFilterButtons(category);
+        }
+
+        function filterAll() {
+            displayAnnouncements('all');
+            updateFilterButtons('all');
+        }
+
+        function updateFilterButtons(activeCategory) {
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.textContent.toLowerCase() === activeCategory || 
+                    (activeCategory === 'all' && btn.textContent === 'Tous')) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        function searchAnnouncements(event) {
+            event.preventDefault();
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const grid = document.getElementById('announcementsGrid');
+            grid.innerHTML = '';
+            
+            const filtered = announcements.filter(ann => 
+                ann.title.toLowerCase().includes(searchTerm) || 
+                ann.description.toLowerCase().includes(searchTerm)
+            );
+            
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div style="text-align: center; grid-column: 1/-1; padding: 3rem;">
+                        <i class="fas fa-search" style="font-size: 3rem; color: #cbd5e1; margin-bottom: 1rem;"></i>
+                        <h3 style="color: #64748b;">Aucune annonce trouvée</h3>
+                        <p style="color: #94a3b8;">Essayez avec d'autres mots-clés</p>
+                    </div>
+                `;
+            } else {
+                displayFilteredAnnouncements(filtered);
+            }
+        }
+
+        function displayFilteredAnnouncements(filteredAnnouncements) {
+            const grid = document.getElementById('announcementsGrid');
+            grid.innerHTML = '';
+            
+            filteredAnnouncements.forEach(announcement => {
+                const card = document.createElement('div');
+                card.className = 'announcement-card';
+                card.innerHTML = `
+                    <img src="${announcement.image}" alt="${announcement.title}" class="announcement-image" onerror="this.src='default-annonce.jpg'">
+                    <div class="announcement-content">
+                        <span class="announcement-category">${getCategoryName(announcement.category)}</span>
+                        ${announcement.important ? '<span style="color: #ff4757; font-size: 0.9rem; margin-left: 10px;"><i class="fas fa-exclamation-circle"></i> Important</span>' : ''}
+                        <h3>${announcement.title}</h3>
+                        <p>${announcement.description}</p>
+                        <div class="announcement-date">
+                            <i class="far fa-calendar"></i> ${announcement.date}
+                        </div>
+                        <a href="#" class="announcement-btn" onclick="showAnnouncementDetails(${announcement.id})">
+                            <i class="fas fa-eye"></i> Voir les détails
+                        </a>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function showAnnouncementDetails(id) {
+            const announcement = announcements.find(ann => ann.id === id);
+            if (announcement) {
+                alert(`Détails de l'annonce:\n\n${announcement.title}\n\n${announcement.description}\n\nDate: ${announcement.date}\nCatégorie: ${getCategoryName(announcement.category)}\n${announcement.important ? '⚠️ Annonce importante' : ''}\n\nPour plus d'informations, contactez-nous sur WhatsApp!`);
+                openWhatsApp();
+            }
+        }
+
+        // Mobile menu toggle function
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Chatbot functionality
+        const chatbotData = {
+            greetings: ["bonjour", "salut", "hello", "coucou", "hi", "hey"],
+            annonces: ["annonces", "actualités", "nouvelles", "news", "informations"],
+            promotions: ["promotions", "offres", "réductions", "promo", "rabais", "soldes"],
+            evenements: ["événements", "webinaires", "formations", "évènement", "conférence", "séminaire"],
+            contact: ["contact", "téléphone", "email", "mail", "adresse", "joindre", "contacter"],
+            santé: ["ça va", "comment vas-tu", "comment ça va", "vas bien", "bien et toi", "santé"],
+            merci: ["merci", "thanks", "thank you"],
+            auRevoir: ["au revoir", "bye", "ciao", "adieu"]
+        };
+
+        function toggleChatbot() {
+            const chatbotWindow = document.getElementById('chatbotWindow');
+            const notification = document.getElementById('chatNotification');
+            
+            chatbotWindow.classList.toggle('active');
+            if (notification) {
+                notification.style.display = 'none';
+            }
+        }
+
+        function quickQuestion(type) {
+            let question = "";
+            switch(type) {
+                case 'annonces':
+                    question = "Quelles sont les dernières annonces ?";
+                    break;
+                case 'promotions':
+                    question = "Y a-t-il des promotions en cours ?";
+                    break;
+                case 'evenements':
+                    question = "Quels événements sont prévus ?";
+                    break;
+                case 'contact':
+                    question = "Comment vous contacter ?";
+                    break;
+                case 'santé':
+                    question = "Comment ça va ?";
+                    break;
+            }
+            
+            document.getElementById('chatInput').value = question;
+            sendMessage();
+        }
+
+        function handleChatInput(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (message === "") return;
+            
+            addUserMessage(message);
+            input.value = "";
+            
+            setTimeout(() => {
+                generateBotResponse(message.toLowerCase());
+            }, 500);
+        }
+
+        function addUserMessage(message) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chatbot-message user';
+            messageDiv.textContent = message;
+            chatMessages.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        function addBotMessage(message, isWhatsAppRedirect = false) {
+            const chatMessages = document.getElementById('chatMessages');
+            
+            if (isWhatsAppRedirect) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'chatbot-message whatsapp-redirect';
+                messageDiv.innerHTML = `<i class="fab fa-whatsapp"></i> ${message}`;
+                messageDiv.onclick = () => openWhatsApp();
+                chatMessages.appendChild(messageDiv);
+            } else {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'chatbot-message bot';
+                messageDiv.textContent = message;
+                chatMessages.appendChild(messageDiv);
+            }
+            
+            scrollToBottom();
+        }
+
+        function showTypingIndicator() {
+            const chatMessages = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'chatbot-typing';
+            typingDiv.innerHTML = '<span></span><span></span><span></span>';
+            typingDiv.id = 'typingIndicator';
+            chatMessages.appendChild(typingDiv);
+            scrollToBottom();
+        }
+
+        function hideTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        function scrollToBottom() {
+            const chatMessages = document.getElementById('chatMessages');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function generateBotResponse(userMessage) {
+            showTypingIndicator();
+            
+            setTimeout(() => {
+                hideTypingIndicator();
+                
+                let response = "";
+                let redirectToWhatsApp = false;
+                
+                if (chatbotData.greetings.some(greet => userMessage.includes(greet))) {
+                    response = "Bonjour ! Je suis ravie de vous aider avec nos annonces. Que recherchez-vous spécifiquement ?";
+                }
+                else if (chatbotData.annonces.some(annonce => userMessage.includes(annonce))) {
+                    response = "Voici nos dernières annonces :\n• Promotion printemps : -30% sur sites web\n• Nouveau service Flutter\n• Webinaire SEO gratuit\n• Maintenance serveur\n\nQuelle annonce vous intéresse ?";
+                }
+                else if (chatbotData.promotions.some(promo => userMessage.includes(promo))) {
+                    response = "Promotions en cours :\n• -30% sur sites vitrines (jusqu'au 30 juin)\n• Pack e-commerce à 150.000 FCFA\n\nDétails sur notre page annonces !";
+                }
+                else if (chatbotData.evenements.some(event => userMessage.includes(event))) {
+                    response = "Événements à venir :\n• Webinaire SEO : 25 mars\n• Formation React.js : 5 avril\n\nInscriptions ouvertes !";
+                }
+                else if (chatbotData.santé.some(santé => userMessage.includes(santé))) {
+                    response = "Je vais très bien, merci ! Toujours heureuse d'aider à trouver les bonnes annonces. Et vous ?";
+                }
+                else if (chatbotData.contact.some(contact => userMessage.includes(contact))) {
+                    response = "Contactez-nous :\n• WhatsApp : +242 068702524\n• Email : talianelouboundzi@gmail.com\n• Téléphone : +237 681634866\n\nWhatsApp pour réponse rapide !";
+                    redirectToWhatsApp = true;
+                }
+                else if (chatbotData.merci.some(merci => userMessage.includes(merci))) {
+                    response = "De rien ! N'hésitez pas si vous avez d'autres questions sur nos annonces.";
+                }
+                else if (chatbotData.auRevoir.some(auRevoir => userMessage.includes(auRevoir))) {
+                    response = "Au revoir ! Consultez régulièrement nos annonces pour ne rien manquer.";
+                }
+                else {
+                    response = "Je peux vous aider avec nos annonces, promotions et événements. Posez-moi une question spécifique ou contactez-nous sur WhatsApp pour plus de détails !";
+                    redirectToWhatsApp = true;
+                }
+                
+                addBotMessage(response);
+                
+                if (redirectToWhatsApp) {
+                    setTimeout(() => {
+                        addBotMessage("Cliquez ici pour discuter directement avec notre équipe !", true);
+                    }, 1000);
+                }
+            }, 1500);
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease-in';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+
+            // Display announcements
+            displayAnnouncements();
+
+            // Carousel auto-advance
+            carouselInterval = setInterval(nextSlide, 5000);
+
+            // Show chatbot notification after 3 seconds
+            setTimeout(() => {
+                const notification = document.getElementById('chatNotification');
+                if (notification) {
+                    notification.style.display = 'flex';
+                }
+            }, 3000);
+
+            // Newsletter form
+            const newsletterForm = document.getElementById('newsletterForm');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const email = this.querySelector('input').value;
+                    if (validateEmail(email)) {
+                        alert('Merci de votre inscription à notre newsletter annonces !');
+                        this.reset();
+                    } else {
+                        alert('Veuillez entrer une adresse email valide.');
+                    }
+                });
+            }
+
+            // Pause carousel on hover
+            const carousel = document.querySelector('.carousel');
+            if (carousel) {
+                carousel.addEventListener('mouseenter', () => {
+                    clearInterval(carouselInterval);
+                });
+
+                carousel.addEventListener('mouseleave', () => {
+                    carouselInterval = setInterval(nextSlide, 5000);
+                });
+            }
+
+            // Navigation smooth scroll
+            document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                        
+                        const navMenu = document.getElementById('navMenu');
+                        if (navMenu && navMenu.classList.contains('active')) {
+                            navMenu.classList.remove('active');
+                        }
+                    }
+                });
+            });
+        });
+
+        // Email validation
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+    </script>
+</body>
+</html>

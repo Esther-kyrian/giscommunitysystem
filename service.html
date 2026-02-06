@@ -1,0 +1,1607 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', serif;
+            overflow-x: hidden;
+            background: #f8fafc;
+            color: #1e293b;
+        }
+
+        /* ========== HEADER ========== */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #0ea5e9;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-image {
+            max-height: 50px;
+            width: auto;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: #0c4a6e;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav ul li a:hover {
+            background: rgba(14, 165, 233, 0.1);
+            color: #0ea5e9;
+        }
+
+        .nav-icon {
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            color: white !important;
+            padding: 0.5rem 1.5rem;
+            border-radius: 5px;
+        }
+
+        .nav-cta:hover {
+            background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #0c4a6e;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* ========== HERO CAROUSEL ========== */
+        .hero-carousel {
+            position: relative;
+            height: 600px;
+            overflow: hidden;
+
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .slide-background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .slide-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+          
+        }
+
+        .slide-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            padding: 0 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .slide-content h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .slide-content p {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+            animation: slideInUp 0.8s ease-out 0.2s both;
+        }
+
+        .slide-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideInUp 0.8s ease-out 0.4s both;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .slide-btn {
+            background: #0ea5e9;
+            color: white;
+            padding: 1.1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.7rem;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
+            text-decoration: none;
+        }
+
+        .slide-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(14, 165, 233, 0.5);
+            background: #0284c7;
+        }
+
+        .slide-btn.secondary {
+            background: white;
+            color: #1e293b;
+        }
+
+        .slide-btn.secondary:hover {
+            background: #f1f5f9;
+            box-shadow: 0 6px 25px rgba(255, 255, 255, 0.3);
+        }
+
+        .slide-btn.whatsapp {
+            background: #25D366;
+        }
+
+        .slide-btn.whatsapp:hover {
+            background: #128C7E;
+        }
+
+        /* Carousel Navigation */
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .carousel-nav-btn {
+
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.3rem;
+            color: white;
+            transition: all 0.3s ease;
+            pointer-events: all;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Carousel Indicators */
+        .carousel-indicators {
+            position: absolute;
+            bottom: 30px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator.active {
+            background: white;
+            width: 35px;
+            border-radius: 6px;
+        }
+
+        .indicator:hover:not(.active) {
+            background: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Carousel Progress Bar */
+        .carousel-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 4px;
+            background: rgba(14, 165, 233, 0.8);
+            width: 0%;
+            transition: width 5s linear;
+            z-index: 10;
+        }
+
+        .carousel-progress.active {
+            width: 100%;
+        }
+
+        /* ========== SERVICES SECTION ========== */
+        .services {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #0ea5e9;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            color: #64748b;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(14, 165, 233, 0.15);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #e0f2fe 0%, #bae6fd 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-image img {
+            transform: scale(1.1);
+        }
+
+        .service-content {
+            padding: 2rem;
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .service-content h3 {
+            color: #0c4a6e;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .service-content p {
+            color: #64748b;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .service-features {
+            margin: 1.5rem 0;
+            padding: 1.5rem 0;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .service-features ul {
+            list-style: none;
+        }
+
+        .service-features li {
+            color: #475569;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .service-features li i {
+            color: #0ea5e9;
+            font-size: 0.9rem;
+        }
+
+        .service-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .price-tag {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #0ea5e9;
+        }
+
+        .price-tag span {
+            font-size: 0.9rem;
+            color: #64748b;
+            font-weight: normal;
+            display: block;
+        }
+
+        .service-btn {
+            background: #0ea5e9;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        .service-btn:hover {
+            background: #0284c7;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+        }
+
+        /* ========== PROCESS SECTION ========== */
+        .process {
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+            color: white;
+        }
+
+        .process-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .process-step {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: white;
+            color: #0ea5e9;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .step-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .process-step h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .process-step p {
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        /* ========== WHY CHOOSE US ========== */
+        .why-choose {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .why-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .why-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.15);
+        }
+
+        .why-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .why-card h3 {
+            color: #0c4a6e;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .why-card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* ========== CTA SECTION ========== */
+        .cta-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .cta-content {
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            padding: 4rem;
+            border-radius: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            background: white;
+            color: #0ea5e9;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-button.whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .cta-button.whatsapp:hover {
+            background: #128C7E;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: linear-gradient(135deg, #0c4a6e 0%, #1e40af 100%);
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #38bdf8;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p {
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-section ul li a:hover {
+            color: #38bdf8;
+            padding-left: 10px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: #38bdf8;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+
+        .newsletter {
+            margin-top: 1.5rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .newsletter-form input::placeholder {
+            color: #94a3b8;
+        }
+
+        .newsletter-form button {
+            background: #38bdf8;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: #0ea5e9;
+        }
+
+        .footer-contact-icon {
+            margin-right: 10px;
+            width: 16px;
+            text-align: center;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                display: none;
+                z-index: 1000;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+
+            .hero-carousel {
+                height: 500px;
+            }
+
+            .slide-content h1 {
+                font-size: 2.2rem;
+            }
+
+            .slide-content p {
+                font-size: 1.1rem;
+            }
+
+            .carousel-nav {
+                padding: 0 1rem;
+            }
+
+            .carousel-nav-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.1rem;
+            }
+
+            .services-grid,
+            .why-grid,
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .logo-image {
+                max-height: 40px;
+            }
+
+            .slide-buttons,
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .slide-btn,
+            .cta-button {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .cta-content {
+                padding: 2rem;
+            }
+
+            .cta-content h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-carousel {
+                height: 450px;
+            }
+
+            .slide-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .slide-content p {
+                font-size: 1rem;
+            }
+
+            .service-content {
+                padding: 1.5rem;
+            }
+
+            .footer-content {
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <img src="Gis Community System.png" alt="GIS Community System" class="logo-image">
+            </a>
+            
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul id="navMenu">
+                <li><a href="index.html"><i class="fas fa-home nav-icon"></i>Accueil</a></li>
+                <li><a href="annonce.html"><i class="fas fa-bullhorn nav-icon"></i>Annonce</a></li>
+                <li><a href="service.html" class="nav-cta"><i class="fas fa-cogs nav-icon"></i>Service</a></li>
+                <li><a href="apropos.html"><i class="fas fa-info-circle nav-icon"></i>À propos</a></li>
+                <li><a href="contact.html"><i class="fas fa-phone-alt nav-icon"></i>Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Carousel -->
+    <section class="hero-carousel">
+        <div class="carousel-container">
+            <div class="carousel-track" id="carouselTrack">
+                <!-- Slide 1 -->
+                <div class="carousel-slide">
+                    <div class="slide-background" style="background-image: url('img5.jpg');"></div>
+                    <div class="slide-content">
+                        <h1>Solutions Web Professionnelles</h1>
+                        <p>Créez une présence en ligne percutante avec nos sites web modernes, performants et optimisés pour convertir vos visiteurs en clients</p>
+                        <div class="slide-buttons">
+                            <button class="slide-btn" onclick="scrollToServices()">
+                                <i class="fas fa-rocket"></i> Découvrir nos services
+                            </button>
+                            <button class="slide-btn whatsapp" onclick="openWhatsApp()">
+                                <i class="fab fa-whatsapp"></i> Devis gratuit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 2 -->
+                <div class="carousel-slide">
+                    <div class="slide-background" style="background-image: url('img6.jpg');"></div>
+                    <div class="slide-content">
+                        <h1>Applications Mobile Innovantes</h1>
+                        <p>Développez des applications iOS et Android qui captivent vos utilisateurs et propulsent votre business vers de nouveaux sommets</p>
+                        <div class="slide-buttons">
+                            <button class="slide-btn" onclick="scrollToServices()">
+                                <i class="fas fa-mobile-alt"></i> Voir nos réalisations
+                            </button>
+                            <button class="slide-btn secondary" onclick="openWhatsApp()">
+                                <i class="fas fa-phone"></i> Contactez-nous
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="carousel-slide">
+                    <div class="slide-background" style="background-image: url('annonce-removebg-preview.png');"></div>
+                    <div class="slide-content">
+                        <h1>Marketing Digital Performant</h1>
+                        <p>Augmentez votre visibilité en ligne avec nos stratégies SEO et marketing digital sur mesure qui génèrent des résultats concrets</p>
+                        <div class="slide-buttons">
+                            <button class="slide-btn" onclick="scrollToServices()">
+                                <i class="fas fa-chart-line"></i> Nos stratégies
+                            </button>
+                            <button class="slide-btn whatsapp" onclick="openWhatsApp()">
+                                <i class="fab fa-whatsapp"></i> Audit gratuit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 4 -->
+                <div class="carousel-slide">
+                    <div class="slide-background" style="background-image: url('gcs1.png');"></div>
+                    <div class="slide-content">
+                        <h1>Formation & Accompagnement</h1>
+                        <p>Formez vos équipes aux dernières technologies digitales avec nos programmes de formation personnalisés et notre expertise reconnue</p>
+                        <div class="slide-buttons">
+                            <button class="slide-btn" onclick="scrollToServices()">
+                                <i class="fas fa-graduation-cap"></i> Nos formations
+                            </button>
+                            <button class="slide-btn secondary" onclick="openWhatsApp()">
+                                <i class="fas fa-calendar-alt"></i> Réserver une session
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <div class="carousel-nav">
+                <button class="carousel-nav-btn" onclick="prevSlide()" aria-label="Slide précédent">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-nav-btn" onclick="nextSlide()" aria-label="Slide suivant">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <!-- Indicators -->
+            <div class="carousel-indicators">
+                <div class="indicator active" onclick="goToSlide(0)"></div>
+                <div class="indicator" onclick="goToSlide(1)"></div>
+                <div class="indicator" onclick="goToSlide(2)"></div>
+                <div class="indicator" onclick="goToSlide(3)"></div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="carousel-progress" id="carouselProgress"></div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <h2 class="section-title">Nos Services Professionnels</h2>
+        <p class="section-subtitle">Des solutions digitales complètes pour accompagner la croissance de votre entreprise</p>
+        
+        <div class="services-grid">
+            <!-- Service 1 -->
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="large.png" alt="Développement Web">
+                </div>
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Développement Web</h3>
+                    <p>Création de sites web modernes, responsives et optimisés pour tous les appareils. Performance et sécurité garanties.</p>
+                    
+                    <div class="service-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Sites vitrines & institutionnels</li>
+                            <li><i class="fas fa-check"></i> Applications web sur mesure</li>
+                            <li><i class="fas fa-check"></i> E-commerce & boutiques en ligne</li>
+                            <li><i class="fas fa-check"></i> Optimisation SEO intégrée</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-price">
+                        <div class="price-tag">
+                            À partir de
+                            <span>50.000 FCFA</span>
+                        </div>
+                        <button class="service-btn" onclick="openWhatsApp('Développement Web')">
+                            <i class="fas fa-comment-alt"></i> Devis gratuit
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Service 2 -->
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="img3.jpg" alt="Applications Mobile">
+                </div>
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Applications Mobile</h3>
+                    <p>Développement d'applications iOS et Android performantes avec Flutter. Expérience utilisateur optimale.</p>
+                    
+                    <div class="service-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Applications natives iOS & Android</li>
+                            <li><i class="fas fa-check"></i> Développement cross-platform Flutter</li>
+                            <li><i class="fas fa-check"></i> Applications métiers sur mesure</li>
+                            <li><i class="fas fa-check"></i> Intégration API & services tiers</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-price">
+                        <div class="price-tag">
+                            À partir de
+                            <span>70.000 FCFA</span>
+                        </div>
+                        <button class="service-btn" onclick="openWhatsApp('Applications Mobile')">
+                            <i class="fas fa-comment-alt"></i> Devis gratuit
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Service 3 -->
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="original.png" alt="SEO & Marketing">
+                </div>
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>SEO & Marketing Digital</h3>
+                    <p>Stratégies marketing pour booster votre visibilité en ligne et attirer plus de clients qualifiés.</p>
+                    
+                    <div class="service-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Audit SEO complet</li>
+                            <li><i class="fas fa-check"></i> Stratégie marketing digitale</li>
+                            <li><i class="fas fa-check"></i> Gestion réseaux sociaux</li>
+                            <li><i class="fas fa-check"></i> Campagnes publicitaires</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-price">
+                        <div class="price-tag">
+                            À partir de
+                            <span>30.000 FCFA/mois</span>
+                        </div>
+                        <button class="service-btn" onclick="openWhatsApp('SEO & Marketing')">
+                            <i class="fas fa-comment-alt"></i> Devis gratuit
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Service 4 -->
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="large (9).png" alt="E-commerce">
+                </div>
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>Solutions E-commerce</h3>
+                    <p>Boutiques en ligne complètes avec paiement sécurisé et gestion des stocks pour maximiser vos ventes.</p>
+                    
+                    <div class="service-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Boutiques WooCommerce</li>
+                            <li><i class="fas fa-check"></i> Paiements sécurisés</li>
+                            <li><i class="fas fa-check"></i> Gestion des stocks</li>
+                            <li><i class="fas fa-check"></i> Analytics & rapports</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-price">
+                        <div class="price-tag">
+                            À partir de
+                            <span>80.000 FCFA</span>
+                        </div>
+                        <button class="service-btn" onclick="openWhatsApp('E-commerce')">
+                            <i class="fas fa-comment-alt"></i> Devis gratuit
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Service 5 -->
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="large (11).png"Data & Analytics">
+                </div>
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Data & Analytics</h3>
+                    <p>Analyse de données et dashboards interactifs pour prendre des décisions basées sur les données.</p>
+                    
+                    <div class="service-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Analyse de données</li>
+                            <li><i class="fas fa-check"></i> Dashboards interactifs</li>
+                            <li><i class="fas fa-check"></i> Business Intelligence</li>
+                            <li><i class="fas fa-check"></i> Rapports automatisés</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-price">
+                        <div class="price-tag">
+                            À partir de
+                            <span>40.000 FCFA</span>
+                        </div>
+                        <button class="service-btn" onclick="openWhatsApp('Data & Analytics')">
+                            <i class="fas fa-comment-alt"></i> Devis gratuit
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Service 6 -->
+            <div class="service-card">
+                <div class="service-image">
+                    <img src="large (12).png"Formation & Consulting">
+                </div>
+                <div class="service-content">
+                    <div class="service-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Formation & Consulting</h3>
+                    <p>Formation professionnelle et conseil en transformation digitale. Accompagnement personnalisé.</p>
+                    
+                    <div class="service-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Formation développement web</li>
+                            <li><i class="fas fa-check"></i> Consulting digital</li>
+                            <li><i class="fas fa-check"></i> Accompagnement projet</li>
+                            <li><i class="fas fa-check"></i> Mentorat technique</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-price">
+                        <div class="price-tag">
+                            À partir de
+                            <span>25.000 FCFA</span>
+                        </div>
+                        <button class="service-btn" onclick="openWhatsApp('Formation & Consulting')">
+                            <i class="fas fa-comment-alt"></i> Devis gratuit
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process">
+        <div class="process-content">
+            <h2 class="section-title" style="color: white;">Notre Processus de Travail</h2>
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <div class="step-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Consultation</h3>
+                    <p>Analyse de vos besoins et définition des objectifs lors d'une consultation gratuite.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <div class="step-icon">
+                        <i class="fas fa-pencil-ruler"></i>
+                    </div>
+                    <h3>Conception</h3>
+                    <p>Création des maquettes et planification détaillée de votre solution.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <div class="step-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Développement</h3>
+                    <p>Implémentation technique avec des points de contrôle réguliers.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <div class="step-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Livraison</h3>
+                    <p>Tests, formation et déploiement avec support post-livraison.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="why-choose">
+        <h2 class="section-title">Pourquoi Nous Choisir ?</h2>
+        <p class="section-subtitle">Des valeurs solides et un engagement total envers votre réussite</p>
+        
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-icon">
+                    <i class="fas fa-award"></i>
+                </div>
+                <h3>Expertise Confirmée</h3>
+                <p>Plus de 8 ans d'expérience avec des projets réussis à travers l'Afrique.</p>
+            </div>
+            
+            <div class="why-card">
+                <div class="why-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>Respect des Délais</h3>
+                <p>Engagement sur des délais réalistes et respect scrupuleux de nos promesses.</p>
+            </div>
+            
+            <div class="why-card">
+                <div class="why-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>Support 24/7</h3>
+                <p>Notre équipe disponible pour vous accompagner après la livraison.</p>
+            </div>
+            
+            <div class="why-card">
+                <div class="why-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h3>Sécurité Maximale</h3>
+                <p>Meilleures pratiques de sécurité pour protéger vos données.</p>
+            </div>
+            
+            <div class="why-card">
+                <div class="why-icon">
+                    <i class="fas fa-money-bill-wave"></i>
+                </div>
+                <h3>Prix Transparents</h3>
+                <p>Devis clairs et détaillés sans frais cachés.</p>
+            </div>
+            
+            <div class="why-card">
+                <div class="why-icon">
+                    <i class="fas fa-sync-alt"></i>
+                </div>
+                <h3>Innovation Continue</h3>
+                <p>Technologies modernes pour des solutions performantes.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Prêt à Démarrer Votre Projet ?</h2>
+            <p>Contactez-nous dès aujourd'hui pour recevoir un devis personnalisé gratuitement.</p>
+            <div class="cta-buttons">
+                <button class="cta-button" onclick="window.location.href='contact.html'">
+                    <i class="fas fa-calendar-alt"></i> Prendre rendez-vous
+                </button>
+                <button class="cta-button whatsapp" onclick="openWhatsApp()">
+                    <i class="fab fa-whatsapp"></i> Discuter sur WhatsApp
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Gis Community System</h3>
+                <p>Votre partenaire de confiance pour tous vos besoins en services numériques.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/+242068702524" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Liens Rapides</h3>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home footer-contact-icon"></i>Accueil</a></li>
+                    <li><a href="annonce.html"><i class="fas fa-bullhorn footer-contact-icon"></i>Annonce</a></li>
+                    <li><a href="service.html"><i class="fas fa-cogs footer-contact-icon"></i>Service</a></li>
+                    <li><a href="apropos.html"><i class="fas fa-info-circle footer-contact-icon"></i>À propos</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope footer-contact-icon"></i>Contact</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Nos Services</h3>
+                <ul>
+                    <li><a href="#services"><i class="fas fa-globe footer-contact-icon"></i>Développement Web</a></li>
+                    <li><a href="#services"><i class="fas fa-mobile-alt footer-contact-icon"></i>Applications Mobile</a></li>
+                    <li><a href="#services"><i class="fas fa-shopping-cart footer-contact-icon"></i>E-commerce</a></li>
+                    <li><a href="#services"><i class="fas fa-chart-line footer-contact-icon"></i>SEO & Marketing</a></li>
+                    <li><a href="#services"><i class="fas fa-database footer-contact-icon"></i>Data & Analytics</a></li>
+                    <li><a href="#services"><i class="fas fa-graduation-cap footer-contact-icon"></i>Formation & Consulting</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="mailto:talianelouboundzi@gmail.com"><i class="fas fa-envelope footer-contact-icon"></i>talianelouboundzi@gmail.com</a></li>
+                    <li><a href="tel:+237681634866"><i class="fas fa-phone footer-contact-icon"></i>+237 681634866</a></li>
+                    <li><a href="https://wa.me/+242068702524"><i class="fab fa-whatsapp footer-contact-icon"></i>+242 068702524</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt footer-contact-icon"></i>Douala, Cameroun</a></li>
+                </ul>
+                <div class="newsletter">
+                    <p>Abonnez-vous à notre newsletter</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Votre email" required>
+                        <button type="submit">S'abonner</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 GIS Community System. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ========== CAROUSEL FUNCTIONALITY ==========
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.indicator');
+        const track = document.getElementById('carouselTrack');
+        const progressBar = document.getElementById('carouselProgress');
+        const totalSlides = slides.length;
+        let autoPlayInterval;
+
+        function updateCarousel(animate = true) {
+            // Update slide position
+            track.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            // Update indicators
+            indicators.forEach((indicator, index) => {
+                indicator.classList.toggle('active', index === currentSlide);
+            });
+
+            // Reset and restart progress bar
+            if (animate) {
+                resetProgress();
+                startProgress();
+            }
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateCarousel();
+            resetAutoPlay();
+        }
+
+        function startAutoPlay() {
+            autoPlayInterval = setInterval(nextSlide, 5000);
+        }
+
+        function stopAutoPlay() {
+            clearInterval(autoPlayInterval);
+        }
+
+        function resetAutoPlay() {
+            stopAutoPlay();
+            startAutoPlay();
+        }
+
+        function startProgress() {
+            progressBar.classList.remove('active');
+            void progressBar.offsetWidth;
+            progressBar.classList.add('active');
+        }
+
+        function resetProgress() {
+            progressBar.classList.remove('active');
+            progressBar.style.width = '0%';
+        }
+
+        // Initialize carousel
+        updateCarousel(true);
+        startAutoPlay();
+
+        // Pause on hover
+        const carouselContainer = document.querySelector('.hero-carousel');
+        carouselContainer.addEventListener('mouseenter', () => {
+            stopAutoPlay();
+            progressBar.style.animationPlayState = 'paused';
+        });
+
+        carouselContainer.addEventListener('mouseleave', () => {
+            startAutoPlay();
+            progressBar.style.animationPlayState = 'running';
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') {
+                prevSlide();
+                resetAutoPlay();
+            } else if (e.key === 'ArrowRight') {
+                nextSlide();
+                resetAutoPlay();
+            }
+        });
+
+        // Touch swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        carouselContainer.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        carouselContainer.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                nextSlide();
+                resetAutoPlay();
+            }
+            if (touchEndX > touchStartX + 50) {
+                prevSlide();
+                resetAutoPlay();
+            }
+        }
+
+        // ========== GENERAL FUNCTIONS ==========
+        function openWhatsApp(service = '') {
+            const phoneNumber = "+242068702524";
+            let message = "Bonjour, je viens de la page Services de GIS Community System";
+            
+            if (service) {
+                message += ` et je suis intéressé par le service "${service}"`;
+            }
+            message += ". Je souhaite avoir plus d'informations et un devis personnalisé.";
+            
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+        }
+
+        function scrollToServices() {
+            document.getElementById('services').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.05)';
+            }
+        });
+
+        // Newsletter form
+        const newsletterForm = document.getElementById('newsletterForm');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input').value;
+                if (validateEmail(email)) {
+                    alert('Merci de votre inscription ! Vous recevrez nos actualités par email.');
+                    this.reset();
+                } else {
+                    alert('Veuillez entrer une adresse email valide.');
+                }
+            });
+        }
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    const navMenu = document.getElementById('navMenu');
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

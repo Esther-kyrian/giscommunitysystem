@@ -1,0 +1,1978 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact </title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Leaflet CSS pour la carte -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family:  'Times New Roman', Times, serif;
+            overflow-x: hidden;
+            background: #f8fafc;
+            color: #334155;
+            line-height: 1.6;
+        }
+
+        /* Header - Identique */
+        header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            animation: slideDown 0.5s ease-out;
+            border-bottom: 1px solid rgba(14, 165, 233, 0.1);
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #0ea5e9;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-image {
+            max-height: 50px;
+            width: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover .logo-image {
+            transform: scale(1.05);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: #0c4a6e;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.95rem;
+        }
+
+        nav ul li a:hover {
+            background: rgba(14, 165, 233, 0.08);
+            color: #0ea5e9;
+        }
+
+        .nav-icon {
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            color: white;
+            padding: 0.6rem 1.6rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .nav-cta:hover {
+            background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.25);
+        }
+
+        /* Hero Banner - Photo seulement avec texte */
+        .contact-hero {
+            position: relative;
+            height: 70vh;
+            min-height: 500px;
+            background: url('img.jpg') center center no-repeat;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 6rem;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, 
+                rgba(0, 0, 0, 0.2) 0%, 
+                rgba(0, 0, 0, 0.4) 50%,
+                rgba(0, 0, 0, 0.6) 100%);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .contact-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            line-height: 1.2;
+        }
+
+        .contact-hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+            font-weight: 300;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-btn {
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #0c4a6e;
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: #f8fafc;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 255, 255, 0.3);
+            border-color: white;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-3px);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Contact Cards Section */
+        .contact-cards {
+            max-width: 1280px;
+            margin: 0 auto 8rem;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: #0c4a6e;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .section-header p {
+            color: #64748b;
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .contact-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #0ea5e9, #38bdf8);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(14, 165, 233, 0.1);
+            border-color: rgba(14, 165, 233, 0.2);
+        }
+
+        .contact-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            color: #0ea5e9;
+            font-size: 1.8rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover .card-icon {
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            color: white;
+            transform: rotate(5deg) scale(1.1);
+        }
+
+        .contact-card h3 {
+            color: #0c4a6e;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .contact-card p {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .contact-info {
+            margin-top: 1.5rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: #475569;
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover {
+            color: #0ea5e9;
+            transform: translateX(5px);
+        }
+
+        .info-item i {
+            color: #0ea5e9;
+            width: 20px;
+            font-size: 1.1rem;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #0ea5e9;
+            text-decoration: none;
+            font-weight: 500;
+            margin-top: 1.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            background: #f0f9ff;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: #e0f2fe;
+            transform: translateX(5px);
+            color: #0284c7;
+        }
+
+        /* Form Section */
+        .form-section {
+            max-width: 1280px;
+            margin: 0 auto 8rem;
+            padding: 0 2rem;
+        }
+
+        .form-container {
+            background: white;
+            border-radius: 20px;
+            padding: 4rem;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .form-header h2 {
+            font-size: 2.5rem;
+            color: #0c4a6e;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .form-header p {
+            color: #64748b;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-label {
+            display: block;
+            color: #0c4a6e;
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            background: #f8fafc;
+            color: #334155;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #0ea5e9;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+            transform: translateY(-2px);
+        }
+
+        textarea.form-input {
+            min-height: 180px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        .form-submit {
+            display: flex;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            color: white;
+            border: none;
+            padding: 1.2rem 3rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.3);
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(14, 165, 233, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Map Section */
+        .map-section {
+            max-width: 1280px;
+            margin: 0 auto 8rem;
+            padding: 0 2rem;
+        }
+
+        .map-container-wrapper {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            height: 500px;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        #contactMap {
+            height: 100%;
+            width: 100%;
+        }
+
+        .map-info {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            max-width: 320px;
+            z-index: 1000;
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .map-info h3 {
+            color: #0c4a6e;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+
+        .map-detail {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+            color: #475569;
+        }
+
+        .map-detail i {
+            color: #0ea5e9;
+            font-size: 1.2rem;
+            margin-top: 2px;
+            width: 24px;
+        }
+
+        .map-cta {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .map-btn {
+            background: #0ea5e9;
+            color: white;
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .map-btn:hover {
+            background: #0284c7;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(14, 165, 233, 0.3);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            max-width: 1280px;
+            margin: 0 auto 8rem;
+            padding: 0 2rem;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .faq-card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            transition: all 0.3s ease;
+        }
+
+        .faq-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(14, 165, 233, 0.1);
+            border-color: rgba(14, 165, 233, 0.2);
+        }
+
+        .faq-icon {
+            width: 60px;
+            height: 60px;
+            background: #f0f9ff;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: #0ea5e9;
+            font-size: 1.5rem;
+        }
+
+        .faq-card h3 {
+            color: #0c4a6e;
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+
+        .faq-card p {
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        /* Footer - Identique */
+        footer {
+            background: linear-gradient(135deg, #0c4a6e 0%, #1e40af 100%);
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #38bdf8;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+
+        .footer-section p {
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-section ul li a:hover {
+            color: #38bdf8;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: #38bdf8;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+
+        .newsletter {
+            margin-top: 1.5rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .newsletter-form input::placeholder {
+            color: #94a3b8;
+        }
+
+        .newsletter-form button {
+            background: #38bdf8;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: #0ea5e9;
+        }
+
+        .footer-contact-icon {
+            margin-right: 10px;
+            width: 16px;
+            text-align: center;
+        }
+
+        /* Chatbot - Identique */
+        .chatbot-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .chatbot-toggle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .chatbot-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .chatbot-notification {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            background: #ff4757;
+            border-radius: 50%;
+            color: white;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+        }
+
+        .chatbot-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chatbot-window.active {
+            display: flex;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            padding: 15px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .chatbot-header-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .chatbot-header-info h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .chatbot-header-info p {
+            margin: 5px 0 0;
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .chatbot-close {
+            margin-left: auto;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .chatbot-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .chatbot-message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+
+        .chatbot-message.bot {
+            background: #f0f9ff;
+            color: #0c4a6e;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .chatbot-message.user {
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .chatbot-message.whatsapp-redirect {
+            background: #25D366;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .chatbot-message.whatsapp-redirect:hover {
+            background: #128C7E;
+        }
+
+        .chatbot-input-container {
+            padding: 15px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            gap: 10px;
+            background: #f8fafc;
+        }
+
+        .chatbot-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 25px;
+            outline: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .chatbot-input:focus {
+            border-color: #0ea5e9;
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+        }
+
+        .chatbot-send {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chatbot-send:hover {
+            background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+            transform: scale(1.05);
+        }
+
+        .chatbot-typing {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 16px;
+            background: #f0f9ff;
+            border-radius: 18px;
+            align-self: flex-start;
+            width: 70px;
+        }
+
+        .chatbot-typing span {
+            width: 8px;
+            height: 8px;
+            background: #0ea5e9;
+            border-radius: 50%;
+            animation: typingAnimation 1.4s infinite ease-in-out;
+        }
+
+        .chatbot-typing span:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+
+        .chatbot-typing span:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+
+        @keyframes typingAnimation {
+            0%, 80%, 100% {
+                transform: scale(0);
+            }
+            40% {
+                transform: scale(1);
+            }
+        }
+
+        .chatbot-quick-questions {
+            padding: 15px 15px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            border-bottom: 1px solid #e2e8f0;
+            background: white;
+        }
+
+        .chatbot-quick-question {
+            background: #f1f5f9;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-quick-question:hover {
+            background: #e2e8f0;
+            color: #0c4a6e;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .contact-hero h1 {
+                font-size: 3rem;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+            
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            
+            .map-info {
+                position: relative;
+                top: auto;
+                right: auto;
+                margin: 20px;
+                max-width: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .contact-hero {
+                height: 60vh;
+                min-height: 400px;
+                margin-bottom: 4rem;
+            }
+
+            .contact-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .contact-hero p {
+                font-size: 1.1rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .form-container {
+                padding: 2rem;
+            }
+
+            .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .logo-image {
+                max-height: 40px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .chatbot-container {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .chatbot-window {
+                width: 320px;
+                height: 450px;
+                right: -10px;
+            }
+            
+            .chatbot-toggle {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .chatbot-avatar {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-hero {
+                height: 50vh;
+                min-height: 350px;
+            }
+
+            .contact-hero h1 {
+                font-size: 2rem;
+            }
+
+            .contact-card,
+            .faq-card {
+                padding: 2rem;
+            }
+
+            .form-container {
+                padding: 1.5rem;
+            }
+
+            .chatbot-window {
+                width: 280px;
+                right: -30px;
+            }
+            
+            .chatbot-toggle {
+                width: 55px;
+                height: 55px;
+            }
+            
+            .chatbot-avatar {
+                width: 55px;
+                height: 55px;
+            }
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #0c4a6e;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                display: none;
+                z-index: 1000;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <img src="Gis Community System.png" alt="GIS Community System" class="logo-image">
+            </a>
+            
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul id="navMenu">
+                <li><a href="index.html"><i class="fas fa-home nav-icon"></i>Accueil</a></li>
+                <li><a href="annonce.html"><i class="fas fa-bullhorn nav-icon"></i>Annonce</a></li>
+                <li><a href="service.html"><i class="fas fa-cogs nav-icon"></i>Service</a></li>
+                <li><a href="apropos.html"><i class="fas fa-info-circle nav-icon"></i>À propos</a></li>
+                <li><a href="#contact" class="nav-cta"><i class="fas fa-phone-alt"></i>Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Banner -->
+    <section class="contact-hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Contactez notre équipe d'experts</h1>
+            <p>Discutons de votre projet digital et découvrez comment nous pouvons transformer vos idées en réalité.</p>
+            <div class="hero-cta">
+                <a href="#contact-form" class="hero-btn btn-primary">
+                    <i class="fas fa-paper-plane"></i> Demander un devis
+                </a>
+                <a href="#map" class="hero-btn btn-secondary">
+                    <i class="fas fa-map-marker-alt"></i> Nous trouver
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Cards -->
+    <section class="contact-cards">
+        <div class="section-header">
+            <h2>Comment nous contacter</h2>
+            <p>Plusieurs moyens pour échanger avec notre équipe d'experts en solutions digitales</p>
+        </div>
+        
+        <div class="cards-grid">
+            <div class="contact-card">
+                <div class="card-icon">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <h3>Téléphone & WhatsApp</h3>
+                <p>Pour une réponse rapide et des conseils personnalisés</p>
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <span>+237 681 63 48 66</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fab fa-whatsapp"></i>
+                        <span>+242 068 70 25 24</span>
+                    </div>
+                </div>
+                <a href="tel:+237681634866" class="contact-link">
+                    Appeler maintenant <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            
+            <div class="contact-card">
+                <div class="card-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Email</h3>
+                <p>Pour les demandes détaillées et les collaborations à long terme</p>
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>talianelouboundzi@gmail.com</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>support@giscommunitysystem.com</span>
+                    </div>
+                </div>
+                <a href="mailto:talianelouboundzi@gmail.com" class="contact-link">
+                    Envoyer un email <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+            
+            <div class="contact-card">
+                <div class="card-icon">
+                    <i class="fas fa-map-marker-alt"></i>
+                </div>
+                <h3>Bureau</h3>
+                <p>Rencontrons-nous pour discuter de votre projet en personne</p>
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-location-dot"></i>
+                        <span>Douala, Cameroun</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-location-dot"></i>
+                        <span>Quartier Ndokoti</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Lun-Ven: 8h-18h</span>
+                    </div>
+                </div>
+                <a href="#map" class="contact-link">
+                    Voir sur la carte <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="form-section" id="contact-form">
+        <div class="form-container">
+            <div class="form-header">
+                <h2>Décrivez votre projet</h2>
+                <p>Remplissez ce formulaire et notre équipe vous contactera dans les plus brefs délais</p>
+            </div>
+            
+            <form class="contact-form" id="contactForm">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label class="form-label" for="name">Nom complet *</label>
+                        <input type="text" id="name" name="name" class="form-input" required placeholder="Votre nom et prénom">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="email">Email *</label>
+                        <input type="email" id="email" name="email" class="form-input" required placeholder="votre@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="company">Entreprise / Organisation</label>
+                        <input type="text" id="company" name="company" class="form-input" placeholder="Nom de votre entreprise">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="phone">Téléphone</label>
+                        <input type="tel" id="phone" name="phone" class="form-input" placeholder="Votre numéro de contact">
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label class="form-label" for="subject">Sujet de votre demande *</label>
+                        <select id="subject" name="subject" class="form-input" required>
+                            <option value="" disabled selected>Sélectionnez un sujet</option>
+                            <option value="devis">Demande de devis</option>
+                            <option value="site-web">Site web</option>
+                            <option value="application">Application mobile/web</option>
+                            <option value="seo">SEO & Marketing digital</option>
+                            <option value="consulting">Consulting & Formation</option>
+                            <option value="partenariat">Partenariat</option>
+                            <option value="autre">Autre demande</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label class="form-label" for="message">Votre projet *</label>
+                        <textarea id="message" name="message" class="form-input" required placeholder="Décrivez votre projet, vos besoins et vos attentes..."></textarea>
+                    </div>
+                </div>
+                
+                <div class="form-submit">
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Envoyer la demande
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section" id="map">
+        <div class="section-header">
+            <h2>Notre localisation</h2>
+            <p>Retrouvez-nous à Douala pour discuter de votre projet en personne</p>
+        </div>
+        
+        <div class="map-container-wrapper">
+            <div id="contactMap"></div>
+            <div class="map-info">
+                <h3>Gis Community System</h3>
+                <div class="map-detail">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Adresse</strong>
+                        <p>Douala, Cameroun<br>Quartier Ndokoti</p>
+                    </div>
+                </div>
+                <div class="map-detail">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <strong>Téléphone</strong>
+                        <p>+237 681 63 48 66</p>
+                    </div>
+                </div>
+                <div class="map-detail">
+                    <i class="fab fa-whatsapp"></i>
+                    <div>
+                        <strong>WhatsApp</strong>
+                        <p>+242 068 70 25 24</p>
+                    </div>
+                </div>
+                <div class="map-cta">
+                    <button class="map-btn" onclick="openWhatsApp()">
+                        <i class="fab fa-whatsapp"></i> Contacter sur WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="section-header">
+            <h2>Questions fréquentes</h2>
+            <p>Tout ce que vous devez savoir pour nous contacter efficacement</p>
+        </div>
+        
+        <div class="faq-grid">
+            <div class="faq-card">
+                <div class="faq-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <h3>Quel est le délai de réponse ?</h3>
+                <p>Nous nous engageons à répondre à toutes les demandes dans un délai maximum de 24 heures ouvrables. Pour les demandes urgentes, privilégiez le WhatsApp.</p>
+            </div>
+            
+            <div class="faq-card">
+                <div class="faq-icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h3>Puis-je prendre rendez-vous ?</h3>
+                <p>Oui, nous proposons des consultations gratuites en ligne ou en présentiel. Contactez-nous pour planifier un rendez-vous à votre convenance.</p>
+            </div>
+            
+            <div class="faq-card">
+                <div class="faq-icon">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                </div>
+                <h3>Comment obtenir un devis ?</h3>
+                <p>Utilisez notre formulaire de contact en précisant vos besoins ou contactez-nous directement par WhatsApp pour un devis personnalisé rapide.</p>
+            </div>
+            
+            <div class="faq-card">
+                <div class="faq-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>Support technique disponible ?</h3>
+                <p>Notre support technique est disponible du lundi au vendredi de 9h à 17h. Pour les urgences, contactez-nous par WhatsApp.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Gis Community System</h3>
+                <p>Votre partenaire de confiance pour tous vos besoins en services numériques.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/+242068702524" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Liens Rapides</h3>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home footer-contact-icon"></i>Accueil</a></li>
+                    <li><a href="annonce.html"><i class="fas fa-bullhorn footer-contact-icon"></i>Annonce</a></li>
+                    <li><a href="service.html"><i class="fas fa-cogs footer-contact-icon"></i>Service</a></li>
+                    <li><a href="apropos.html"><i class="fas fa-info-circle footer-contact-icon"></i>À propos</a></li>
+                    <li><a href="#contact"><i class="fas fa-envelope footer-contact-icon"></i>Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Nos Services</h3>
+                <ul>
+                    <li><a href="service.html"><i class="fas fa-globe footer-contact-icon"></i>Sites Web</a></li>
+                    <li><a href="service.html"><i class="fas fa-mobile-alt footer-contact-icon"></i>Applications Mobile</a></li>
+                    <li><a href="service.html"><i class="fas fa-laptop-code footer-contact-icon"></i>Applications Web</a></li>
+                    <li><a href="service.html"><i class="fas fa-chart-line footer-contact-icon"></i>SEO & Marketing</a></li>
+                    <li><a href="service.html"><i class="fas fa-database footer-contact-icon"></i>Data & Analytics</a></li>
+                    <li><a href="service.html"><i class="fas fa-graduation-cap footer-contact-icon"></i>Formation & Consulting</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="mailto:talianelouboundzi@gmail.com"><i class="fas fa-envelope footer-contact-icon"></i>talianelouboundzi@gmail.com</a></li>
+                    <li><a href="tel:+237681634866"><i class="fas fa-phone footer-contact-icon"></i>+237 681634866</a></li>
+                    <li><a href="https://wa.me/+242068702524"><i class="fab fa-whatsapp footer-contact-icon"></i>+242 068702524 (WhatsApp)</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt footer-contact-icon"></i>Douala, Cameroun</a></li>
+                </ul>
+                <div class="newsletter">
+                    <p>Abonnez-vous à notre newsletter</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Votre email" required>
+                        <button type="submit">S'abonner</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 GIS Community System. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <button class="chatbot-toggle" onclick="toggleChatbot()">
+            <img src="sarah.jpg" alt="Sarah AI" class="chatbot-avatar">
+            <div class="chatbot-notification" id="chatNotification">1</div>
+        </button>
+        
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <img src="sarah.jpg" alt="Sarah AI" class="chatbot-header-avatar">
+                <div class="chatbot-header-info">
+                    <h3>Sarah AI</h3>
+                    <p>Assistant virtuel de GCS</p>
+                </div>
+                <button class="chatbot-close" onclick="toggleChatbot()">×</button>
+            </div>
+            
+            <div class="chatbot-quick-questions">
+                <button class="chatbot-quick-question" onclick="quickQuestion('adresse')">Adresse</button>
+                <button class="chatbot-quick-question" onclick="quickQuestion('telephone')">Téléphone</button>
+                <button class="chatbot-quick-question" onclick="quickQuestion('whatsapp')">WhatsApp</button>
+                <button class="chatbot-quick-question" onclick="quickQuestion('email')">Email</button>
+                <button class="chatbot-quick-question" onclick="quickQuestion('horaires')">Horaires</button>
+            </div>
+            
+            <div class="chatbot-messages" id="chatMessages">
+                <div class="chatbot-message bot">
+                    Bonjour ! Je suis Sarah, l'assistante virtuelle de Gis Community System.<br><br>
+                    Je peux vous aider avec nos coordonnées de contact. Que souhaitez-vous savoir ?
+                </div>
+            </div>
+            
+            <div class="chatbot-input-container">
+                <input type="text" class="chatbot-input" id="chatInput" placeholder="Posez votre question..." onkeypress="handleChatInput(event)">
+                <button class="chatbot-send" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS pour la carte -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script>
+        // WhatsApp function
+        function openWhatsApp() {
+            const phoneNumber = "+242068702524";
+            const message = "Bonjour, je viens de la page Contact de GIS Community System et je souhaite avoir plus d'informations.";
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+        }
+
+        // Mobile menu toggle function
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Initialize Leaflet Map
+        function initMap() {
+            // Coordonnées de Ndokoti, Douala (approximatives)
+            const ndokotiCoords = [4.0483, 9.7043];
+            
+            // Créer la carte
+            const map = L.map('contactMap').setView(ndokotiCoords, 15);
+            
+            // Ajouter les tuiles OpenStreetMap
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors',
+                maxZoom: 19
+            }).addTo(map);
+            
+            // Ajouter un marqueur personnalisé
+            const customIcon = L.divIcon({
+                className: 'custom-marker',
+                html: '<div style="background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%); width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; border: 3px solid white; box-shadow: 0 0 20px rgba(14, 165, 233, 0.5);"><i class="fas fa-map-marker-alt"></i></div>',
+                iconSize: [50, 50],
+                iconAnchor: [25, 50],
+                popupAnchor: [0, -50]
+            });
+            
+            // Ajouter le marqueur
+            const marker = L.marker(ndokotiCoords, { icon: customIcon }).addTo(map);
+            
+            // Ajouter une popup
+            marker.bindPopup(`
+                <div style="padding: 15px; max-width: 250px;">
+                    <h3 style="margin: 0 0 10px 0; color: #0c4a6e; font-size: 1.2rem;">Gis Community System</h3>
+                    <p style="margin: 8px 0; color: #64748b; font-size: 0.9rem;"><i class="fas fa-map-marker-alt" style="color: #0ea5e9;"></i> Douala, Cameroun</p>
+                    <button onclick="openWhatsApp()" style="background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%); color: white; border: none; padding: 10px 15px; border-radius: 8px; cursor: pointer; margin-top: 10px; width: 100%; font-weight: 500; font-size: 0.9rem;">
+                        <i class="fas fa-phone-alt"></i> Nous contacter
+                    </button>
+                </div>
+            `);
+            
+            // Ajouter un cercle pour indiquer la zone
+            L.circle(ndokotiCoords, {
+                color: '#0ea5e9',
+                fillColor: '#38bdf8',
+                fillOpacity: 0.15,
+                radius: 400
+            }).addTo(map);
+        }
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Animation du bouton
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+            submitBtn.disabled = true;
+            
+            // Simulation d'envoi avec animation
+            setTimeout(() => {
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Message envoyé !';
+                submitBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                
+                // Afficher une notification
+                const notification = document.createElement('div');
+                notification.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    right: 20px;
+                    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+                    color: white;
+                    padding: 20px;
+                    border-radius: 10px;
+                    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+                    z-index: 10000;
+                    animation: slideInRight 0.5s ease-out;
+                    max-width: 300px;
+                `;
+                notification.innerHTML = `
+                    <h4 style="margin: 0 0 10px 0; font-size: 1.1rem;"><i class="fas fa-check-circle"></i> Demande envoyée !</h4>
+                    <p style="margin: 0; font-size: 0.9rem;">Nous vous contacterons dans les plus brefs délais.</p>
+                `;
+                document.body.appendChild(notification);
+                
+                // Supprimer l'alerte après 5 secondes
+                setTimeout(() => {
+                    notification.style.animation = 'slideOutRight 0.5s ease-out forwards';
+                    setTimeout(() => notification.remove(), 500);
+                }, 5000);
+                
+                // Réinitialiser le bouton après 3 secondes
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.style.background = 'linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%)';
+                    
+                    // Réinitialiser le formulaire
+                    this.reset();
+                }, 3000);
+            }, 1500);
+        });
+
+        // Newsletter form submission
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            if (validateEmail(email)) {
+                const btn = this.querySelector('button');
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                btn.disabled = true;
+                
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="fas fa-check"></i>';
+                    btn.style.background = '#10b981';
+                    
+                    // Réinitialiser après 2 secondes
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.disabled = false;
+                        btn.style.background = '';
+                        this.reset();
+                    }, 2000);
+                }, 1000);
+            }
+        });
+
+        // Email validation
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        // Chatbot functionality
+        const chatbotData = {
+            greetings: ["bonjour", "salut", "hello", "coucou", "hi", "hey"],
+            adresse: ["adresse", "localisation", "où êtes-vous", "localiser", "lieu", "position"],
+            telephone: ["téléphone", "numéro", "appeler", "phone", "contact téléphonique"],
+            whatsapp: ["whatsapp", "whats app", "messenger", "tchat"],
+            email: ["email", "mail", "courriel", "courrier électronique"],
+            horaires: ["horaires", "heures", "ouvert", "fermé", "disponible", "quand"],
+            contact: ["contact", "contacter", "joindre", "parler", "discuter"],
+            santé: ["ça va", "comment vas-tu", "comment ça va", "vas bien"],
+            merci: ["merci", "thanks", "thank you"],
+            auRevoir: ["au revoir", "bye", "ciao", "adieu"]
+        };
+
+        function toggleChatbot() {
+            const chatbotWindow = document.getElementById('chatbotWindow');
+            const notification = document.getElementById('chatNotification');
+            
+            chatbotWindow.classList.toggle('active');
+            notification.style.display = 'none';
+        }
+
+        function quickQuestion(type) {
+            let question = "";
+            switch(type) {
+                case 'adresse':
+                    question = "Quelle est votre adresse ?";
+                    break;
+                case 'telephone':
+                    question = "Quel est votre numéro de téléphone ?";
+                    break;
+                case 'whatsapp':
+                    question = "Puis-je vous contacter sur WhatsApp ?";
+                    break;
+                case 'email':
+                    question = "Quelle est votre adresse email ?";
+                    break;
+                case 'horaires':
+                    question = "Quels sont vos horaires d'ouverture ?";
+                    break;
+            }
+            
+            document.getElementById('chatInput').value = question;
+            sendMessage();
+        }
+
+        function handleChatInput(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (message === "") return;
+            
+            addUserMessage(message);
+            input.value = "";
+            
+            setTimeout(() => {
+                generateBotResponse(message.toLowerCase());
+            }, 500);
+        }
+
+        function addUserMessage(message) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chatbot-message user';
+            messageDiv.textContent = message;
+            chatMessages.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        function addBotMessage(message, isWhatsAppRedirect = false) {
+            const chatMessages = document.getElementById('chatMessages');
+            
+            if (isWhatsAppRedirect) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'chatbot-message whatsapp-redirect';
+                messageDiv.innerHTML = `<i class="fab fa-whatsapp"></i> ${message}`;
+                messageDiv.onclick = () => openWhatsApp();
+                chatMessages.appendChild(messageDiv);
+            } else {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'chatbot-message bot';
+                messageDiv.textContent = message;
+                chatMessages.appendChild(messageDiv);
+            }
+            
+            scrollToBottom();
+        }
+
+        function showTypingIndicator() {
+            const chatMessages = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'chatbot-typing';
+            typingDiv.innerHTML = '<span></span><span></span><span></span>';
+            typingDiv.id = 'typingIndicator';
+            chatMessages.appendChild(typingDiv);
+            scrollToBottom();
+        }
+
+        function hideTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        function scrollToBottom() {
+            const chatMessages = document.getElementById('chatMessages');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function generateBotResponse(userMessage) {
+            showTypingIndicator();
+            
+            setTimeout(() => {
+                hideTypingIndicator();
+                
+                let response = "";
+                let redirectToWhatsApp = false;
+                
+                if (chatbotData.greetings.some(greet => userMessage.includes(greet))) {
+                    response = "Bonjour ! Je suis Sarah, l'assistante virtuelle de Gis Community System. Je peux vous aider avec nos coordonnées de contact. Que souhaitez-vous savoir ?";
+                }
+                else if (chatbotData.adresse.some(adresse => userMessage.includes(adresse))) {
+                    response = "Nous sommes situés à Douala, Cameroun dans le quartier Ndokoti. Vous pouvez voir notre position exacte sur la carte de cette page.";
+                }
+                else if (chatbotData.telephone.some(tel => userMessage.includes(tel))) {
+                    response = "Nos numéros de téléphone :\n• +237 681 63 48 66 (appel)\n• +242 068 70 25 24 (WhatsApp)\n\nPour une réponse rapide, nous vous conseillons d'utiliser WhatsApp.";
+                    redirectToWhatsApp = true;
+                }
+                else if (chatbotData.whatsapp.some(whatsapp => userMessage.includes(whatsapp))) {
+                    response = "Oui ! Vous pouvez nous contacter sur WhatsApp au +242 068 70 25 24. Nous répondons généralement dans l'heure.";
+                    redirectToWhatsApp = true;
+                }
+                else if (chatbotData.email.some(email => userMessage.includes(email))) {
+                    response = "Nos adresses email :\n• talianelouboundzi@gmail.com\n• support@giscommunitysystem.com\n\nNous répondons sous 24 heures.";
+                }
+                else if (chatbotData.horaires.some(horaires => userMessage.includes(horaires))) {
+                    response = "Nos horaires d'ouverture :\n• Lundi au vendredi : 8h-18h\n• Samedi : 9h-13h\n• Dimanche : Fermé\n\nNotre service WhatsApp reste disponible en dehors de ces horaires.";
+                }
+                else if (chatbotData.santé.some(santé => userMessage.includes(santé))) {
+                    response = "Je vais très bien, merci ! Toujours prête à vous aider avec nos coordonnées. Et vous, comment allez-vous ?";
+                }
+                else if (chatbotData.merci.some(merci => userMessage.includes(merci))) {
+                    response = "De rien ! N'hésitez pas si vous avez d'autres questions sur nos contacts.";
+                }
+                else if (chatbotData.auRevoir.some(auRevoir => userMessage.includes(auRevoir))) {
+                    response = "Au revoir ! N'hésitez pas à nous contacter si besoin. Bonne journée !";
+                }
+                else if (chatbotData.contact.some(contact => userMessage.includes(contact))) {
+                    response = "Vous pouvez nous contacter par :\n• WhatsApp : +242 068702524\n• Téléphone : +237 681634866\n• Email : talianelouboundzi@gmail.com\n• Formulaire de contact sur cette page\n\nPour une réponse rapide, WhatsApp est recommandé !";
+                    redirectToWhatsApp = true;
+                }
+                else {
+                    response = "Je peux vous aider avec nos coordonnées : adresse, téléphone, email, horaires d'ouverture. Posez-moi une question spécifique ou contactez-nous directement sur WhatsApp pour plus de détails !";
+                    redirectToWhatsApp = true;
+                }
+                
+                addBotMessage(response);
+                
+                if (redirectToWhatsApp) {
+                    setTimeout(() => {
+                        addBotMessage("Cliquez ici pour discuter directement avec notre équipe sur WhatsApp !", true);
+                    }, 800);
+                }
+            }, 1500);
+        }
+
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease-in';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+
+            // Initialize map
+            initMap();
+
+            // Show chatbot notification after 3 seconds
+            setTimeout(() => {
+                const notification = document.getElementById('chatNotification');
+                notification.style.display = 'flex';
+            }, 3000);
+
+            // Smooth scroll for navigation
+            document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        const navMenu = document.getElementById('navMenu');
+                        if (navMenu.classList.contains('active')) {
+                            navMenu.classList.remove('active');
+                        }
+                    }
+                });
+            });
+
+            // Add CSS animations
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideInRight {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                @keyframes slideOutRight {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+                .custom-marker {
+                    background: none;
+                    border: none;
+                }
+                .leaflet-popup-content {
+                    font-family: 'Segoe UI', sans-serif;
+                }
+            `;
+            document.head.appendChild(style);
+
+            // Animate cards on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe contact cards
+            document.querySelectorAll('.contact-card, .faq-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

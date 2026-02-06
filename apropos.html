@@ -1,0 +1,2244 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À Propos</title>
+    <!-- Font Awesome pour les vraies icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            overflow-x: hidden;
+            background: #f0f9ff;
+        }
+
+        /* Header */
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #0ea5e9;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-image {
+            max-height: 50px;
+            width: auto;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: #0c4a6e;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav ul li a:hover {
+            background: rgba(14, 165, 233, 0.1);
+            color: #0ea5e9;
+        }
+
+        .nav-icon {
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+       
+
+        /* Banner avec nouvelle image */
+        .banner {
+            position: relative;
+            height: 400px;
+            background: url('img5.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            margin-bottom: 4rem;
+            overflow: hidden;
+        }
+
+        .banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+          
+            animation: gradientShift 10s ease infinite alternate;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background: linear-gradient(45deg, rgba(14, 165, 233, 0.7) 0%, rgba(56, 189, 248, 0.7) 100%);
+            }
+            100% {
+                background: linear-gradient(45deg, rgba(56, 189, 248, 0.7) 0%, rgba(14, 165, 233, 0.7) 100%);
+            }
+        }
+
+        .banner-content {
+            max-width: 800px;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .banner h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 0.8s ease-out, pulse 2s ease-in-out infinite 1s;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .banner p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            animation: fadeInUp 0.8s ease-out 0.2s forwards;
+            opacity: 0;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Mission Vision Section */
+        .mission-vision {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .mv-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .mv-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(14, 165, 233, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .mv-card.animated {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .mv-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(14, 165, 233, 0.2);
+        }
+
+        .mv-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            color: white;
+            font-size: 2rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .mv-card h3 {
+            color: #0c4a6e;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .mv-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            transition: width 0.3s ease;
+        }
+
+        .mv-card:hover h3::after {
+            width: 100px;
+        }
+
+        .mv-card p {
+            color: #64748b;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        /* Histoire Section */
+        .histoire {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .histoire-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-top: 3rem;
+        }
+
+        .histoire-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(14, 165, 233, 0.2);
+            opacity: 0;
+            transform: translateX(-30px);
+        }
+
+        .histoire-image.animated {
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+
+        .histoire-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .histoire-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .histoire-text {
+            opacity: 0;
+            transform: translateX(30px);
+        }
+
+        .histoire-text.animated {
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+
+        .histoire-text h2 {
+            color: #0ea5e9;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .histoire-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            border-radius: 2px;
+        }
+
+        .histoire-text p {
+            color: #64748b;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        .histoire-text p:hover {
+            color: #0c4a6e;
+        }
+
+        /* Valeurs Section */
+        .valeurs {
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            padding: 4rem 2rem;
+            margin: 4rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .valeurs::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 Z"/></svg>');
+            background-size: 100% 100%;
+            animation: wave 20s linear infinite;
+        }
+
+        @keyframes wave {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .valeurs-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .valeurs h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .valeurs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .valeur-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .valeur-card.animated {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .valeur-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px) scale(1.05);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .valeur-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: float 3s ease-in-out infinite;
+            animation-delay: calc(var(--i) * 0.1s);
+        }
+
+        .valeur-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .valeur-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 2px;
+            background: white;
+            transition: width 0.3s ease;
+        }
+
+        .valeur-card:hover h3::after {
+            width: 80px;
+        }
+
+        .valeur-card p {
+            opacity: 0.9;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Équipe Section */
+        .team {
+            max-width: 1200px;
+            margin: 0 auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .team h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #0ea5e9;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.1);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .team-member.animated {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 0 8px 25px rgba(14, 165, 233, 0.2);
+        }
+
+        .team-image {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 5px solid #0ea5e9;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .team-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.3) 0%, rgba(56, 189, 248, 0.3) 100%);
+            border-radius: 50%;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .team-member:hover .team-image::before {
+            opacity: 1;
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .team-member:hover .team-image img {
+            transform: scale(1.1);
+        }
+
+        .team-member h3 {
+            color: #0c4a6e;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .team-member:hover h3 {
+            color: #0ea5e9;
+        }
+
+        .team-role {
+            color: #0ea5e9;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .team-role::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #0ea5e9;
+            transition: width 0.3s ease;
+        }
+
+        .team-member:hover .team-role::after {
+            width: 100%;
+        }
+
+        .team-bio {
+            color: #64748b;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* FAQ Section */
+        .faq {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .faq h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #0ea5e9;
+            margin-bottom: 3rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .faq-item.animated {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            border: none;
+            width: 100%;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0c4a6e;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .faq-question:hover {
+            background: #f0f9ff;
+        }
+
+        .faq-question.active {
+            background: #e0f2fe;
+            color: #0ea5e9;
+        }
+
+        .faq-question::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 0;
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            transition: width 0.3s ease;
+        }
+
+        .faq-question:hover::before {
+            width: 5px;
+        }
+
+        .faq-question.active::before {
+            width: 5px;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+            font-size: 1.5rem;
+            color: #0ea5e9;
+        }
+
+        .faq-question.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            background: #f8fafc;
+            transition: all 0.3s ease;
+        }
+
+        .faq-answer.active {
+            padding: 1.5rem;
+            max-height: 500px;
+            animation: slideDownAnswer 0.5s ease-out;
+        }
+
+        @keyframes slideDownAnswer {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .faq-answer p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            text-align: center;
+        }
+
+        .cta-content {
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            padding: 4rem;
+            border-radius: 20px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .cta-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveBackground 20s linear infinite;
+            opacity: 0.3;
+        }
+
+        @keyframes moveBackground {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            100% {
+                transform: translate(-25px, -25px) rotate(1deg);
+            }
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .cta-content p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button {
+            background: white;
+            color: #0ea5e9;
+            padding: 1rem 2.5rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .cta-button:hover::before {
+            left: 100%;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: #f0f9ff;
+        }
+
+        .cta-button.whatsapp {
+            background: #25D366;
+            color: white;
+        }
+
+        .cta-button.whatsapp:hover {
+            background: #128C7E;
+            transform: translateY(-3px) scale(1.05);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #0c4a6e 0%, #1e40af 100%);
+            color: white;
+            padding: 3rem 2rem 1rem;
+            margin-top: 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #0ea5e9, #38bdf8, #0ea5e9);
+            background-size: 200% 100%;
+            animation: gradientMove 3s ease infinite;
+        }
+
+        @keyframes gradientMove {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-section {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .footer-section.animated {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .footer-section h3 {
+            color: #38bdf8;
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: #38bdf8;
+            transition: width 0.3s ease;
+        }
+
+        .footer-section:hover h3::after {
+            width: 60px;
+        }
+
+        .footer-section p {
+            color: #cbd5e1;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section:hover p {
+            color: white;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            padding-left: 0;
+        }
+
+        .footer-section ul li a::before {
+            content: '→';
+            position: absolute;
+            left: -20px;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: #38bdf8;
+            padding-left: 20px;
+        }
+
+        .footer-section ul li a:hover::before {
+            opacity: 1;
+            left: 0;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .social-links a:hover::before {
+            left: 100%;
+        }
+
+        .social-links a:hover {
+            background: #38bdf8;
+            transform: translateY(-3px) rotate(360deg);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #cbd5e1;
+            font-size: 0.9rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter {
+            margin-top: 1.5rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form input:focus {
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.5);
+        }
+
+        .newsletter-form input::placeholder {
+            color: #94a3b8;
+        }
+
+        .newsletter-form button {
+            background: #38bdf8;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-form button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .newsletter-form button:hover::before {
+            left: 100%;
+        }
+
+        .newsletter-form button:hover {
+            background: #0ea5e9;
+            transform: translateY(-2px);
+        }
+
+        .footer-contact-icon {
+            margin-right: 10px;
+            width: 16px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-section ul li a:hover .footer-contact-icon {
+            transform: scale(1.2);
+        }
+
+        /* Chatbot Styles */
+        .chatbot-container {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+            animation: bounce 2s ease infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .chatbot-toggle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+        }
+
+        .chatbot-toggle:hover {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 6px 20px rgba(14, 165, 233, 0.5);
+        }
+
+        .chatbot-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .chatbot-toggle:hover .chatbot-avatar {
+            transform: scale(1.1);
+        }
+
+        .chatbot-notification {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            width: 20px;
+            height: 20px;
+            background: #ff4757;
+            border-radius: 50%;
+            color: white;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid white;
+            animation: pulse 1s ease infinite;
+        }
+
+        .chatbot-window {
+            position: absolute;
+            bottom: 80px;
+            right: 0;
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            display: none;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .chatbot-window.active {
+            display: flex;
+            animation: slideUp 0.3s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            padding: 15px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .chatbot-header-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid white;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .chatbot-header-info h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+
+        .chatbot-header-info p {
+            margin: 5px 0 0;
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+
+        .chatbot-close {
+            margin-left: auto;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: rotate(90deg);
+        }
+
+        .chatbot-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .chatbot-message {
+            max-width: 80%;
+            padding: 12px 16px;
+            border-radius: 18px;
+            line-height: 1.4;
+            word-wrap: break-word;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: fadeInUpMessage 0.3s ease-out forwards;
+        }
+
+        @keyframes fadeInUpMessage {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .chatbot-message.bot {
+            background: #f0f9ff;
+            color: #0c4a6e;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+        }
+
+        .chatbot-message.user {
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .chatbot-message.whatsapp-redirect {
+            background: #25D366;
+            color: white;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .chatbot-message.whatsapp-redirect:hover {
+            background: #128C7E;
+            transform: scale(1.05);
+        }
+
+        .chatbot-input-container {
+            padding: 15px;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            gap: 10px;
+            background: #f8fafc;
+        }
+
+        .chatbot-input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 25px;
+            outline: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .chatbot-input:focus {
+            border-color: #0ea5e9;
+            box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
+        }
+
+        .chatbot-send {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #0ea5e9 0%, #38bdf8 100%);
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chatbot-send:hover {
+            background: linear-gradient(135deg, #0284c7 0%, #0ea5e9 100%);
+            transform: scale(1.05) rotate(180deg);
+        }
+
+        .chatbot-typing {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 16px;
+            background: #f0f9ff;
+            border-radius: 18px;
+            align-self: flex-start;
+            width: 70px;
+        }
+
+        .chatbot-typing span {
+            width: 8px;
+            height: 8px;
+            background: #0ea5e9;
+            border-radius: 50%;
+            animation: typingAnimation 1.4s infinite ease-in-out;
+        }
+
+        .chatbot-typing span:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+
+        .chatbot-typing span:nth-child(2) {
+            animation-delay: -0.16s;
+        }
+
+        @keyframes typingAnimation {
+            0%, 80%, 100% {
+                transform: scale(0);
+            }
+            40% {
+                transform: scale(1);
+            }
+        }
+
+        .chatbot-quick-questions {
+            padding: 15px 15px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            border-bottom: 1px solid #e2e8f0;
+            background: white;
+        }
+
+        .chatbot-quick-question {
+            background: #f1f5f9;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .chatbot-quick-question:hover {
+            background: #e2e8f0;
+            color: #0c4a6e;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+
+            .banner h1 {
+                font-size: 2.5rem;
+            }
+
+            .banner p {
+                font-size: 1.1rem;
+            }
+
+            .histoire-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .mv-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .logo-image {
+                max-height: 40px;
+            }
+
+            .faq h2 {
+                font-size: 2rem;
+            }
+
+            .faq-question {
+                font-size: 1rem;
+                padding: 1.2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button {
+                margin: 5px 0;
+                width: 80%;
+                max-width: 300px;
+                padding: 0.8rem 1.5rem;
+                font-size: 1rem;
+            }
+
+            .cta-button.whatsapp {
+                padding: 0.7rem 1.3rem;
+                font-size: 0.95rem;
+            }
+
+            .chatbot-container {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .chatbot-window {
+                width: 320px;
+                height: 450px;
+                right: -10px;
+            }
+            
+            .chatbot-toggle {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .chatbot-avatar {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .chatbot-window {
+                width: 280px;
+                right: -30px;
+            }
+            
+            .chatbot-toggle {
+                width: 55px;
+                height: 55px;
+            }
+            
+            .chatbot-avatar {
+                width: 55px;
+                height: 55px;
+            }
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #0c4a6e;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            color: #0ea5e9;
+            transform: rotate(90deg);
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                display: none;
+                z-index: 1000;
+                animation: slideDown 0.3s ease-out;
+            }
+
+            nav ul.active {
+                display: flex;
+            }
+        }
+
+        /* Floating elements animation */
+        .floating-element {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: floatAround 20s linear infinite;
+        }
+
+        @keyframes floatAround {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(100px, 50px) rotate(90deg);
+            }
+            50% {
+                transform: translate(50px, 100px) rotate(180deg);
+            }
+            75% {
+                transform: translate(-50px, 50px) rotate(270deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+
+        /* Scroll progress bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, #0ea5e9, #38bdf8);
+            z-index: 1001;
+            transition: width 0.1s ease;
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <img src="Gis Community System.png" alt="GIS Community System" class="logo-image">
+            </a>
+            
+            <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul id="navMenu">
+                <li><a href="index.html"><i class="fas fa-home nav-icon"></i>Accueil</a></li>
+                <li><a href="annonce.html"><i class="fas fa-bullhorn nav-icon"></i>Annonce</a></li>
+                <li><a href="service.html"><i class="fas fa-cogs nav-icon"></i>Service</a></li>
+                <li><a href="apropos.html" class="nav-cta"><i class="fas fa-info-circle nav-icon"></i>À propos</a></li>
+                <li><a href="contact.html"><i class="fas fa-phone-alt nav-icon"></i>Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Banner -->
+    <section class="banner">
+        <div class="banner-content">
+            <h1>À Propos de Nous</h1>
+            <p>Découvrez notre histoire, notre mission et notre passion pour l'innovation numérique</p>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="mission-vision">
+        <div class="mv-grid">
+            <div class="mv-card">
+                <div class="mv-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h3>Notre Mission</h3>
+                <p>Rendre la technologie accessible à toutes les entreprises, quels que soient leur taille ou leur secteur d'activité. Nous nous engageons à fournir des solutions numériques innovantes, abordables et de haute qualité qui propulsent la croissance de nos clients.</p>
+            </div>
+            
+            <div class="mv-card">
+                <div class="mv-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h3>Notre Vision</h3>
+                <p>Devenir le leader de référence en Afrique pour les solutions digitales d'entreprise. Nous aspirons à créer un écosystème numérique inclusif où chaque entreprise peut bénéficier des avantages de la transformation digitale pour son développement.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notre Histoire -->
+    <section class="histoire">
+        <div class="histoire-content">
+            <div class="histoire-image">
+                <img src="img4.jpg" alt="Histoire de GCS">
+            </div>
+            <div class="histoire-text">
+                <h2>Notre Histoire</h2>
+                <p>Fondée en août 2024, Gis Community System est née d'une passion commune pour la technologie et le désir de démocratiser l'accès aux solutions digitales en Afrique.</p>
+                <p>Au fil des années, nous avons grandi et évolué pour répondre aux besoins changeants du marché. De la création de sites web simples à des applications complexes, nous avons constamment innové pour offrir à nos clients les meilleures solutions technologiques.</p>
+                <p>Aujourd'hui, GCS est fier d'avoir accompagné plusieurs entreprises dans leur transformation digitale, contribuant à leur succès et à leur croissance sur le marché africain et international.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nos Valeurs -->
+    <section class="valeurs">
+        <div class="valeurs-content">
+            <h2>Nos Valeurs</h2>
+            <div class="valeurs-grid">
+                <div class="valeur-card">
+                    <div class="valeur-icon" style="--i: 1">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Excellence</h3>
+                    <p>Nous visons l'excellence dans chaque projet, chaque ligne de code, chaque interaction client.</p>
+                </div>
+                
+                <div class="valeur-card">
+                    <div class="valeur-icon" style="--i: 2">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <h3>Innovation</h3>
+                    <p>Nous restons à la pointe de la technologie pour offrir des solutions modernes et efficaces.</p>
+                </div>
+                
+                <div class="valeur-card">
+                    <div class="valeur-icon" style="--i: 3">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Collaboration</h3>
+                    <p>Nous travaillons en étroite collaboration avec nos clients pour comprendre et répondre à leurs besoins.</p>
+                </div>
+                
+                <div class="valeur-card">
+                    <div class="valeur-icon" style="--i: 4">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Intégrité</h3>
+                    <p>Nous maintenons des standards éthiques élevés dans toutes nos interactions et transactions.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notre Équipe -->
+    <section class="team">
+        <h2>Notre Équipe</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="team-image">
+                    <img src="ceo.png" alt="CEO">
+                </div>
+                <h3>Mister Giscard</h3>
+                <p class="team-role">CEO & Fondateur</p>
+                <p class="team-bio">Visionnaire et entrepreneur passionné par l'innovation technologique et la transformation digitale. Plus de 8 ans d'expérience dans le développement web et mobile.</p>
+            </div>
+            
+            <div class="team-member">
+                <div class="team-image">
+                    <img src="Copilot_20260106_160920-removebg-preview.png" alt="Secrétaire Général">
+                </div>
+                <h3>Daniela Nsomo</h3>
+                <p class="team-role">Secrétaire Général</p>
+                <p class="team-bio">Experte en gestion administrative et coordination d'équipes pour une excellence opérationnelle. Spécialisée en communication et relations clients.</p>
+            </div>
+            
+            <div class="team-member">
+                <div class="team-image">
+                    <img src="anthony.jpeg" alt="Expert Marketing">
+                </div>
+                <h3>Anthony</h3>
+                <p class="team-role">Expert Marketing SEO</p>
+                <p class="team-bio">Expert marketing SEO & administrateur dans l'innovation technologique et la transformation digitale. Spécialiste des stratégies digitales et de croissance.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq" id="faq">
+        <h2>Questions Fréquentes</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Depuis combien de temps GCS existe-t-il ?</span>
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Gis Community System a été fondée en 2026  , nous avons évolué d'une petite startup à une entreprise reconnue dans le domaine des solutions digitales en Afrique.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Dans quels pays êtes-vous présents ?</span>
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Nous sommes basés à Douala, Cameroun, mais nous travaillons avec des clients à travers toute l'Afrique et l'Europe. Grâce au travail à distance, nous pouvons servir des clients partout dans le monde.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Quels types de clients avez-vous servis ?</span>
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Nous avons travaillé avec une diversité de clients : startups innovantes, PME, grandes entreprises, organisations à but non lucratif, et institutions éducatives. Chaque projet est unique et nous l'adaptons aux besoins spécifiques du client.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Comment assurez-vous la qualité de vos services ?</span>
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Nous avons mis en place un processus qualité rigoureux : revues de code, tests approfondis, validation par étapes, et suivi continu après la livraison. Tous nos développeurs sont certifiés et suivent des formations régulières.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <button class="faq-question">
+                    <span>Quelles sont vos certifications ?</span>
+                    <span class="faq-icon">▼</span>
+                </button>
+                <div class="faq-answer">
+                    <p>Notre équipe possède des certifications dans diverses technologies : Google Certified Professional, Microsoft Certified Solutions Developer, AWS Certified Solutions Architect, et certifications spécifiques aux frameworks modernes comme React, Vue.js et Flutter.</p>
+                </div>
+            </div>
+            
+       
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Prêt à Transformer Votre Entreprise ?</h2>
+            <p>Rejoignez les dizaines d'entreprises qui ont fait confiance à GCS pour leur transformation digitale. Notre équipe est prête à vous accompagner dans votre projet.</p>
+            <div class="cta-buttons">
+                <button class="cta-button" onclick="window.location.href='contact.html'">
+                    <i class="fas fa-calendar-alt"></i> Prendre rendez-vous
+                </button>
+                <button class="cta-button whatsapp" onclick="openWhatsApp()">
+                    <i class="fab fa-whatsapp"></i> Discuter sur WhatsApp
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Gis Community System</h3>
+                <p>Votre partenaire de confiance pour tous vos besoins en services numériques.</p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://wa.me/+242068702524" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Liens Rapides</h3>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home footer-contact-icon"></i>Accueil</a></li>
+                    <li><a href="annonce.html"><i class="fas fa-bullhorn footer-contact-icon"></i>Annonce</a></li>
+                    <li><a href="service.html"><i class="fas fa-cogs footer-contact-icon"></i>Service</a></li>
+                    <li><a href="apropos.html"><i class="fas fa-info-circle footer-contact-icon"></i>À propos</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope footer-contact-icon"></i>Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Nos Services</h3>
+                <ul>
+                    <li><a href="service.html"><i class="fas fa-globe footer-contact-icon"></i>Sites Web</a></li>
+                    <li><a href="service.html"><i class="fas fa-mobile-alt footer-contact-icon"></i>Applications Mobile</a></li>
+                    <li><a href="service.html"><i class="fas fa-laptop-code footer-contact-icon"></i>Applications Web</a></li>
+                    <li><a href="service.html"><i class="fas fa-chart-line footer-contact-icon"></i>SEO & Marketing</a></li>
+                    <li><a href="service.html"><i class="fas fa-database footer-contact-icon"></i>Data & Analytics</a></li>
+                    <li><a href="service.html"><i class="fas fa-graduation-cap footer-contact-icon"></i>Formation & Consulting</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <ul>
+                    <li><a href="mailto:talianelouboundzi@gmail.com"><i class="fas fa-envelope footer-contact-icon"></i>talianelouboundzi@gmail.com</a></li>
+                    <li><a href="tel:+237681634866"><i class="fas fa-phone footer-contact-icon"></i>+237 681634866</a></li>
+                    <li><a href="https://wa.me/+242068702524"><i class="fab fa-whatsapp footer-contact-icon"></i>+242 068702524 (WhatsApp)</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt footer-contact-icon"></i>Douala, Cameroun</a></li>
+                </ul>
+                <div class="newsletter">
+                    <p>Abonnez-vous à notre newsletter</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" placeholder="Votre email" required>
+                        <button type="submit">S'abonner</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 GIS Community System. Tous droits réservés.</p>
+        </div>
+    </footer>
+
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <button class="chatbot-toggle" onclick="toggleChatbot()">
+            <img src="sarah.jpg" alt="Sarah AI" class="chatbot-avatar">
+            <div class="chatbot-notification" id="chatNotification">1</div>
+        </button>
+        
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <img src="sarah.jpg" alt="Sarah AI" class="chatbot-header-avatar">
+                <div class="chatbot-header-info">
+                    <h3>Sarah AI</h3>
+                    <p>Assistant virtuel de GCS</p>
+                </div>
+                <button class="chatbot-close" onclick="toggleChatbot()">×</button>
+            </div>
+            
+            <div class="chatbot-quick-questions">
+                <button class="chatbot-quick-question" onclick="quickQuestion('entreprise')">L'entreprise</button>
+                <button class="chatbot-quick-question" onclick="quickQuestion('équipe')">Notre équipe</button>
+                <button class="chatbot-quick-question" onclick="quickQuestion('valeurs')">Nos valeurs</button>
+                <button class="chatbot-quick-question" onclick="quickQuestion('contact')">Contact</button>
+                <button class="chatbot-quick-question" onclick="quickQuestion('santé')">Comment ça va?</button>
+            </div>
+            
+            <div class="chatbot-messages" id="chatMessages">
+                <div class="chatbot-message bot">
+                    Bonjour ! Je suis Sarah, l'assistante virtuelle de Gis Community System.<br><br>
+                    Vous êtes sur notre page "À propos". Je peux vous renseigner sur notre histoire, notre équipe et nos valeurs !
+                </div>
+            </div>
+            
+            <div class="chatbot-input-container">
+                <input type="text" class="chatbot-input" id="chatInput" placeholder="Posez votre question..." onkeypress="handleChatInput(event)">
+                <button class="chatbot-send" onclick="sendMessage()">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // WhatsApp function
+        function openWhatsApp() {
+            const phoneNumber = "+242068702524";
+            const message = "Bonjour, je viens de la page À Propos de GIS Community System et je souhaite avoir plus d'informations sur votre entreprise.";
+            const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappURL, '_blank');
+        }
+
+        // FAQ functionality
+        document.querySelectorAll('.faq-question').forEach(button => {
+            button.addEventListener('click', () => {
+                const faqItem = button.parentElement;
+                const answer = faqItem.querySelector('.faq-answer');
+                
+                // Close all other FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    if (item !== faqItem) {
+                        item.querySelector('.faq-question').classList.remove('active');
+                        item.querySelector('.faq-answer').classList.remove('active');
+                    }
+                });
+                
+                // Toggle current FAQ item
+                button.classList.toggle('active');
+                answer.classList.toggle('active');
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+                header.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+                header.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+            }
+        });
+
+        // Mobile menu toggle function
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Chatbot functionality
+        const chatbotData = {
+            greetings: ["bonjour", "salut", "hello", "coucou", "hi", "hey"],
+            entreprise: ["entreprise", "histoire", "fondation", "création", "début", "origine"],
+            équipe: ["équipe", "team", "collaborateurs", "employés", "qui travaille", "membres", "giscard", "daniela", "anthony"],
+            valeurs: ["valeurs", "principes", "éthique", "mission", "vision", "philosophie"],
+            contact: ["contact", "téléphone", "email", "mail", "adresse", "joindre", "contacter", "parler"],
+            santé: ["ça va", "comment vas-tu", "comment ça va", "vas bien", "bien et toi", "santé", "tu vas bien", "comment tu vas"],
+            merci: ["merci", "thanks", "thank you", "remercie", "gracías"],
+            auRevoir: ["au revoir", "bye", "ciao", "adieu", "à plus", "à bientôt", "salut"],
+            nom: ["ton nom", "tu t'appelles", "qui es-tu", "nom", "appelles-tu"],
+            clients: ["clients", "projets", "réalisations", "portfolio", "références", "travaux"]
+        };
+
+        function toggleChatbot() {
+            const chatbotWindow = document.getElementById('chatbotWindow');
+            const notification = document.getElementById('chatNotification');
+            
+            chatbotWindow.classList.toggle('active');
+            notification.style.display = 'none';
+        }
+
+        function quickQuestion(type) {
+            let question = "";
+            switch(type) {
+                case 'entreprise':
+                    question = "Quelle est l'histoire de votre entreprise ?";
+                    break;
+                case 'équipe':
+                    question = "Qui compose votre équipe ?";
+                    break;
+                case 'valeurs':
+                    question = "Quelles sont vos valeurs ?";
+                    break;
+                case 'contact':
+                    question = "Comment vous contacter ?";
+                    break;
+                case 'santé':
+                    question = "Comment ça va ?";
+                    break;
+            }
+            
+            document.getElementById('chatInput').value = question;
+            sendMessage();
+        }
+
+        function handleChatInput(event) {
+            if (event.key === 'Enter') {
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+            
+            if (message === "") return;
+            
+            addUserMessage(message);
+            input.value = "";
+            
+            setTimeout(() => {
+                generateBotResponse(message.toLowerCase());
+            }, 500);
+        }
+
+        function addUserMessage(message) {
+            const chatMessages = document.getElementById('chatMessages');
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'chatbot-message user';
+            messageDiv.textContent = message;
+            chatMessages.appendChild(messageDiv);
+            scrollToBottom();
+        }
+
+        function addBotMessage(message, isWhatsAppRedirect = false) {
+            const chatMessages = document.getElementById('chatMessages');
+            
+            if (isWhatsAppRedirect) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'chatbot-message whatsapp-redirect';
+                messageDiv.innerHTML = `<i class="fab fa-whatsapp"></i> ${message}`;
+                messageDiv.onclick = () => openWhatsApp();
+                chatMessages.appendChild(messageDiv);
+            } else {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = 'chatbot-message bot';
+                messageDiv.textContent = message;
+                chatMessages.appendChild(messageDiv);
+            }
+            
+            scrollToBottom();
+        }
+
+        function showTypingIndicator() {
+            const chatMessages = document.getElementById('chatMessages');
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'chatbot-typing';
+            typingDiv.innerHTML = '<span></span><span></span><span></span>';
+            typingDiv.id = 'typingIndicator';
+            chatMessages.appendChild(typingDiv);
+            scrollToBottom();
+        }
+
+        function hideTypingIndicator() {
+            const typingIndicator = document.getElementById('typingIndicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        function scrollToBottom() {
+            const chatMessages = document.getElementById('chatMessages');
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function generateBotResponse(userMessage) {
+            showTypingIndicator();
+            
+            setTimeout(() => {
+                hideTypingIndicator();
+                
+                let response = "";
+                let redirectToWhatsApp = false;
+                
+                // Check for greetings
+                if (chatbotData.greetings.some(greet => userMessage.includes(greet))) {
+                    response = "Bonjour ! Bienvenue sur notre page À Propos. Je suis ravie de vous parler de notre entreprise ! 😊";
+                }
+                // Check for health questions
+                else if (chatbotData.santé.some(santé => userMessage.includes(santé))) {
+                    const responses = [
+                        "Je vais très bien, merci ! Toujours heureuse de parler de notre belle entreprise. Et vous, comment allez-vous ? 😊",
+                        "Ça va super bien ! Notre entreprise se porte très bien aussi. Merci de demander !"
+                    ];
+                    response = responses[Math.floor(Math.random() * responses.length)];
+                }
+                // Check for thanks
+                else if (chatbotData.merci.some(merci => userMessage.includes(merci))) {
+                    response = "De rien ! C'est toujours un plaisir de partager notre passion pour le numérique avec nos clients. 😊";
+                }
+                // Check for goodbye
+                else if (chatbotData.auRevoir.some(auRevoir => userMessage.includes(auRevoir))) {
+                    response = "Au revoir ! N'hésitez pas à revenir si vous avez d'autres questions sur notre entreprise. Bonne journée ! 👋";
+                }
+                // Check for name
+                else if (chatbotData.nom.some(nom => userMessage.includes(nom))) {
+                    response = "Je suis Sarah, l'assistante virtuelle de Gis Community System ! 🤖 Mon rôle est de vous renseigner sur notre entreprise et nos services.";
+                }
+                // Check for company history
+                else if (chatbotData.entreprise.some(entreprise => userMessage.includes(entreprise))) {
+                    response = "Gis Community System a été fondée en 2020 à Douala, Cameroun. Notre fondateur, Mister Giscard, voulait rendre la technologie accessible aux entreprises africaines. En 4 ans, nous avons grandi pour devenir une référence dans le domaine des solutions digitales !";
+                }
+                // Check for team
+                else if (chatbotData.équipe.some(équipe => userMessage.includes(équipe))) {
+                    response = "Notre équipe est composée de professionnels passionnés :\n• Mister Giscard - CEO & Fondateur\n• Daniela Nsomo - Secrétaire Général\n• Anthony - Expert Marketing SEO\n\nNous sommes une petite équipe mais avec une grande expertise !";
+                }
+                // Check for values
+                else if (chatbotData.valeurs.some(valeurs => userMessage.includes(valeurs))) {
+                    response = "Nos valeurs fondamentales sont :\n🎯 Excellence : Nous visons la perfection dans chaque projet\n💡 Innovation : Toujours à la pointe de la technologie\n🤝 Collaboration : Partenariat étroit avec nos clients\n🛡️ Intégrité : Éthique et transparence dans toutes nos actions";
+                }
+                // Check for contact
+                else if (chatbotData.contact.some(contact => userMessage.includes(contact))) {
+                    response = "Vous pouvez nous contacter :\n📱 WhatsApp : +242 068702524\n✉️ Email : talianelouboundzi@gmail.com\n📞 Téléphone : +237 681634866\n📍 Adresse : Douala, Cameroun\n\nWhatsApp est le moyen le plus rapide pour nous joindre !";
+                    redirectToWhatsApp = true;
+                }
+                // Check for clients
+                else if (chatbotData.clients.some(clients => userMessage.includes(clients))) {
+                    response = "Nous avons eu le plaisir de travailler avec plus de 50 clients ! Des startups innovantes aux grandes entreprises, en passant par des organisations à but non lucratif. Chaque projet est unique et nous l'adaptons aux besoins spécifiques du client.";
+                }
+                // Default response for unknown questions
+                else {
+                    response = "Je suis désolée, je ne connais pas la réponse à cette question spécifique sur notre entreprise. Pour plus de détails, je vous recommande de contacter directement notre équipe sur WhatsApp !";
+                    redirectToWhatsApp = true;
+                }
+                
+                addBotMessage(response);
+                
+                // Add WhatsApp redirect message if needed
+                if (redirectToWhatsApp) {
+                    setTimeout(() => {
+                        addBotMessage("Cliquez ici pour discuter directement avec notre équipe sur WhatsApp !", true);
+                    }, 1000);
+                }
+            }, 1500);
+        }
+
+        // Scroll progress bar
+        function updateScrollProgress() {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (window.scrollY / windowHeight) * 100;
+            scrollProgress.style.width = scrolled + '%';
+        }
+
+        window.addEventListener('scroll', updateScrollProgress);
+
+        // Initialize animations on scroll
+        function initAnimations() {
+            const animatedElements = document.querySelectorAll('.mv-card, .histoire-image, .histoire-text, .valeur-card, .team-member, .faq-item, .footer-section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            });
+            
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add loading animation
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease-in';
+            
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+
+            // Initialize animations
+            initAnimations();
+
+            // Show welcome message after 3 seconds
+            setTimeout(() => {
+                const notification = document.getElementById('chatNotification');
+                notification.style.display = 'flex';
+            }, 3000);
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu after clicking a link
+                    const navMenu = document.getElementById('navMenu');
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                    }
+                }
+            });
+        });
+        
+        // Newsletter form submission
+        const newsletterForm = document.getElementById('newsletterForm');
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = this.querySelector('input').value;
+                if (validateEmail(email)) {
+                    alert('Merci de votre inscription à notre newsletter! Vous recevrez nos actualités par email.');
+                    this.reset();
+                } else {
+                    alert('Veuillez entrer une adresse email valide.');
+                }
+            });
+        }
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+    </script>
+</body>
+</html>
